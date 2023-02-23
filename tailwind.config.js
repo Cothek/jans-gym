@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx}",
@@ -16,7 +17,11 @@ module.exports = {
         light: "#9DADBC",
       },
       backgroundImage: {
-        "supplements-pattern": "url('/supplements.svg')",
+        "supplements-pattern": "url('/supplements-pattern.svg')",
+      },
+      fontFamily: {
+        primary: ["Josefin Sans", "sans-serif"],
+        secondary: ["Ultra", "serif"],
       },
     },
   },
