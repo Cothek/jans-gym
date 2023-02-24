@@ -1,4 +1,4 @@
-import Border from "../components/Border";
+import Bar from "../components/Bar";
 import Fitness from "../components/Fitness";
 import Heart from "../components/Heart";
 import FullscriptLogo from "../components/FullscriptLogo";
@@ -11,6 +11,9 @@ import Supplements from "../components/Supplements";
 import Box from "../components/Box";
 import Head from "next/head";
 import { useRef, useState, useEffect } from "react";
+import { useMediaQuery } from "react-responsive";
+import JansGymTextLogo from "../components/JansGymTextLogo";
+import BarLarge from "../components/BarLarge";
 
 const colors = theme.theme.extend.colors;
 const sections = [
@@ -58,6 +61,7 @@ function useOnScreen(ref) {
 
 export default function Home() {
   const [sectionOnScreen, setSectionOnScreen] = useState("home");
+  const isMobile = useMediaQuery({ maxHeight: 700 });
 
   setRefs();
 
@@ -77,56 +81,105 @@ export default function Home() {
         <title>Jan's Gym</title>
       </Head>
       <div className="Content">
-        <nav className="group/nav fixed z-50 max-w-[50%] p-6 transition-all duration-300">
+        <nav
+          className={`${
+            sectionOnScreen === "top" ? "" : "group/nav "
+          }fixed z-50 max-w-[50%] p-6 transition-all duration-300`}
+        >
           <div
             className={`${
               sectionOnScreen === "top" ? "gap-2" : "gap-10"
-            } grid h-fit w-fit rounded-2xl bg-white/20 p-6 pb-10 backdrop-blur-lg transition-all`}
+            } grid h-fit w-fit rounded-2xl bg-white/20 p-6 pb-10 backdrop-blur-lg transition-all duration-300`}
           >
             <div className={`grid`}>
-              <JansGymLogo
+              <div
                 className={`${
                   sectionOnScreen === "top"
-                    ? "h-60 w-60"
-                    : "h-24 w-24 group-hover/nav:justify-self-center"
-                } cursor-pointer transition-all hover:scale-110`}
-                colorCenter={colors.dark}
-                colorCircle={colors.dark}
-                colorDate={colors.dark}
-                colorEST={colors.dark}
-                colorJ={colors.primary}
-                colorG={colors.light}
-              />
+                    ? "gap-[4vh] justify-self-start"
+                    : "gap-0 group-hover/nav:justify-self-center"
+                } group/logo flex cursor-pointer place-items-center transition-all duration-300`}
+                onClick={() => {
+                  sections[1].ref.current.scrollIntoView({
+                    behavior: "smooth",
+                  });
+                }}
+              >
+                <JansGymLogo
+                  className={`${
+                    sectionOnScreen === "top"
+                      ? "h-[25vh] w-[25vh]"
+                      : "h-24 w-24"
+                  } transition-all duration-300 group-hover/logo:scale-105`}
+                  colorCenter={colors.dark}
+                  colorCircle={colors.dark}
+                  colorDate={colors.dark}
+                  colorEST={colors.dark}
+                  colorJ={colors.primary}
+                  colorG={colors.light}
+                />
+                <JansGymTextLogo
+                  className={`${
+                    sectionOnScreen === "top" ? "h-[25vh] w-[35vh]" : "h-0 w-0"
+                  } transition-all duration-300 group-hover/logo:scale-105`}
+                  stroke={colors.white[0]}
+                  fillBar={colors.dark}
+                  fillJans={colors.primary}
+                  fillGym={colors.light}
+                />
+              </div>
+              <div className={`hidden`}>MENU</div>
               <h2
                 className={`${
                   sectionOnScreen === "top"
-                    ? "mx-4 my-8 max-h-full rounded-xl bg-light/70 p-10 text-5xl text-white opacity-100"
+                    ? "mx-4 mb-[3vh] mt-[calc(3vh+0.5rem)] max-h-full rounded-xl bg-light/50 p-[3.5vh] text-[4.5vh] leading-[6.5vh] text-white opacity-100"
                     : "m-0 max-h-0 overflow-hidden p-0 text-[0px] opacity-0"
-                } transition-all`}
+                } transition-all duration-300`}
               >
                 Providing top quality training to help you achieve the health
                 goals you want!
               </h2>
             </div>
-            <div className={`hidden`}>MENU</div>
-            <div className="group/fitness ml-4 mr-0 flex cursor-pointer place-items-center gap-4 rounded-lg bg-transparent transition-all hover:bg-light/70 hover:text-primary hover:drop-shadow-lg group-hover/nav:mr-4">
+            <div
+              className={`${
+                sectionOnScreen === "top" ? "w-fit " : ""
+              }group/training ml-4 mr-0 flex cursor-pointer place-items-center gap-4 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4`}
+              onClick={() => {
+                sections[2].ref.current.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
               <Fitness
-                className={`
-                ${sectionOnScreen === "top" ? "w-12" : "w-16"} ${
+                className={`${
+                  sectionOnScreen === "top" ? "w-[calc(2rem+2vh)]" : "w-16"
+                } ${
                   sectionOnScreen === sections[2].name
                     ? `text-primary`
                     : `text-secondary`
-                } transition-all group-hover/fitness:text-primary`}
+                } transition-all group-hover/training:text-primary`}
                 fill={"currentColor"}
                 stroke={colors.dark}
               />
-              <h3 className="mt-[3px] mr-0 max-w-0 text-3xl opacity-0 transition-all group-hover/nav:mr-2 group-hover/nav:max-w-full group-hover/nav:opacity-100">
-                Fitness
+              <h3
+                className={`${
+                  sectionOnScreen === "top"
+                    ? "mr-4 max-w-full text-[calc(1rem+1vh)] opacity-100"
+                    : "mr-0 max-w-0 text-3xl opacity-0"
+                } mt-[5px] transition-all group-hover/nav:mr-4 group-hover/nav:max-w-full group-hover/nav:opacity-100`}
+              >
+                {capitalizeFirstLetter(sections[2].name)}
               </h3>
             </div>
-            <div className="group/profile ml-4 mr-0 flex cursor-pointer place-items-center gap-4 rounded-lg bg-transparent transition-all hover:bg-light/70 hover:text-primary hover:drop-shadow-lg group-hover/nav:mr-4">
+            <div
+              className={`${
+                sectionOnScreen === "top" ? "w-fit " : " "
+              }group/profile ml-4 mr-0 flex cursor-pointer place-items-center gap-4 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4`}
+              onClick={() => {
+                sections[3].ref.current.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
               <Heart
-                className={`${sectionOnScreen === "top" ? "w-12" : "w-16"} ${
+                className={`${
+                  sectionOnScreen === "top" ? "w-[calc(2rem+2vh)]" : "w-16"
+                } ${
                   sectionOnScreen === sections[3].name
                     ? `text-primary`
                     : `text-secondary`
@@ -134,13 +187,28 @@ export default function Home() {
                 fill={"currentColor"}
                 stroke={colors.dark}
               />
-              <h3 className="mt-[3px] mr-0 max-w-0 text-3xl opacity-0 transition-all group-hover/nav:mr-2 group-hover/nav:max-w-full group-hover/nav:opacity-100">
-                Profile
+              <h3
+                className={`${
+                  sectionOnScreen === "top"
+                    ? "mr-4 max-w-full text-[calc(1rem+1vh)] opacity-100"
+                    : "mr-0 max-w-0 text-3xl opacity-0"
+                } mt-[5px] transition-all group-hover/nav:mr-4 group-hover/nav:max-w-full group-hover/nav:opacity-100`}
+              >
+                {capitalizeFirstLetter(sections[3].name)}
               </h3>
             </div>
-            <div className="group/classes ml-4 mr-0 flex cursor-pointer place-items-center gap-4 rounded-lg bg-transparent transition-all hover:bg-light/70 hover:text-primary hover:drop-shadow-lg group-hover/nav:mr-4">
+            <div
+              className={`${
+                sectionOnScreen === "top" ? "w-fit " : " "
+              }group/classes ml-4 mr-0 flex cursor-pointer place-items-center gap-4 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4`}
+              onClick={() => {
+                sections[4].ref.current.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
               <Calendar
-                className={`${sectionOnScreen === "top" ? "w-12" : "w-16"} ${
+                className={`${
+                  sectionOnScreen === "top" ? "w-[calc(2rem+2vh)]" : "w-16"
+                } ${
                   sectionOnScreen === sections[4].name
                     ? `text-primary`
                     : `text-secondary`
@@ -148,13 +216,28 @@ export default function Home() {
                 fill={"currentColor"}
                 stroke={colors.dark}
               />
-              <h3 className="mt-[3px] mr-0 max-w-0 text-3xl opacity-0 transition-all group-hover/nav:mr-2 group-hover/nav:max-w-full group-hover/nav:opacity-100">
-                Classes
+              <h3
+                className={`${
+                  sectionOnScreen === "top"
+                    ? "mr-4 max-w-full text-[calc(1rem+1vh)] opacity-100"
+                    : "mr-0 max-w-0 text-3xl opacity-0"
+                } mt-[5px] transition-all group-hover/nav:mr-4 group-hover/nav:max-w-full group-hover/nav:opacity-100`}
+              >
+                {capitalizeFirstLetter(sections[4].name)}
               </h3>
             </div>
-            <div className="group/supplements ml-4 mr-0 flex cursor-pointer place-items-center gap-4 rounded-lg bg-transparent transition-all hover:bg-light/70 hover:text-primary hover:drop-shadow-lg group-hover/nav:mr-4">
+            <div
+              className={`${
+                sectionOnScreen === "top" ? "w-fit " : " "
+              }group/supplements ml-4 mr-0 flex cursor-pointer place-items-center gap-4 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4`}
+              onClick={() => {
+                sections[5].ref.current.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
               <Supplements
-                className={`${sectionOnScreen === "top" ? "w-12" : "w-16"} ${
+                className={`${
+                  sectionOnScreen === "top" ? "w-[calc(2rem+2vh)]" : "w-16"
+                } ${
                   sectionOnScreen === sections[5].name
                     ? `text-primary`
                     : `text-secondary`
@@ -162,13 +245,28 @@ export default function Home() {
                 fill={"currentColor"}
                 stroke={colors.dark}
               />
-              <h3 className="mt-[3px] mr-0 max-w-0 text-3xl opacity-0 transition-all group-hover/nav:mr-2 group-hover/nav:max-w-full group-hover/nav:opacity-100">
-                Supplements
+              <h3
+                className={`${
+                  sectionOnScreen === "top"
+                    ? "mr-4 max-w-full text-[calc(1rem+1vh)] opacity-100"
+                    : "mr-0 max-w-0 text-3xl opacity-0"
+                } mt-[5px] transition-all group-hover/nav:mr-4 group-hover/nav:max-w-full group-hover/nav:opacity-100`}
+              >
+                {capitalizeFirstLetter(sections[5].name)}
               </h3>
             </div>
-            <div className="group/equipment ml-4 mr-0 flex cursor-pointer place-items-center gap-4 rounded-lg bg-transparent transition-all hover:bg-light/70 hover:text-primary hover:drop-shadow-lg group-hover/nav:mr-4">
+            <div
+              className={`${
+                sectionOnScreen === "top" ? "w-fit " : " "
+              }group/equipment ml-4 mr-0 flex cursor-pointer place-items-center gap-4 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4`}
+              onClick={() => {
+                sections[6].ref.current.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
               <Box
-                className={`${sectionOnScreen === "top" ? "w-12" : "w-16"} ${
+                className={`${
+                  sectionOnScreen === "top" ? "w-[calc(2rem+2vh)]" : "w-16"
+                } ${
                   sectionOnScreen === sections[6].name
                     ? `text-primary`
                     : `text-secondary`
@@ -176,8 +274,14 @@ export default function Home() {
                 fill={"currentColor"}
                 stroke={colors.dark}
               />
-              <h3 className="mt-[3px] mr-0 max-w-0 text-3xl opacity-0 transition-all group-hover/nav:mr-2 group-hover/nav:max-w-full group-hover/nav:opacity-100">
-                Eqipment
+              <h3
+                className={`${
+                  sectionOnScreen === "top"
+                    ? "mr-4 max-w-full text-[calc(1rem+1vh)] opacity-100"
+                    : "mr-0 max-w-0 text-3xl opacity-0"
+                } mt-[5px] transition-all group-hover/nav:mr-4 group-hover/nav:max-w-full group-hover/nav:opacity-100`}
+              >
+                {capitalizeFirstLetter(sections[6].name)}
               </h3>
             </div>
           </div>
@@ -206,17 +310,16 @@ export default function Home() {
           ref={sections[2].ref}
           className="relative z-10 mb-40 grid place-items-center overflow-x-clip bg-gradient-to-r from-secondary to-secondary-dark py-[10%] text-white"
         >
-          {/* <Border
-            key="border1"
-            className="absolute bottom-full z-0 h-[202px] translate-y-1"
-            color1={theme.theme.extend.colors.secondary}
-            color2={theme.theme.extend.colors["secondary-dark"]}
-          /> */}
           <div className="relative z-10 grid w-[min(70%,_1100px)] gap-20">
-            <div>
-              <h1 className="font-secondary text-8xl text-dark">
-                {capitalizeFirstLetter(sections[1].name)}
+            <div className="grid w-fit place-items-center gap-6">
+              <h1 className="font-secondary text-5xl text-dark md:text-6xl lg:text-7xl xl:text-8xl">
+                {capitalizeFirstLetter(sections[2].name)}
               </h1>
+              <Bar
+                className="h-6 md:h-7 lg:h-9 xl:h-11"
+                color1={colors.dark}
+                color2={colors.dark}
+              />
             </div>
             <p className="mb-4 text-2xl">
               <span className="font-secondary text-dark">Jan</span> has been a
@@ -252,24 +355,22 @@ export default function Home() {
               </div>
             </div>
           </div>
-          {/* <Border
-            key="border2"
-            className="absolute top-full z-0 h-[202px] -translate-y-1 -scale-100"
-            gradientId="b"
-            color1={theme.theme.extend.colors["secondary-dark"]}
-            color2={theme.theme.extend.colors.secondary}
-          /> */}
         </section>
         <section
           id={sections[3].name}
           ref={sections[3].ref}
-          className="relative grid place-items-center py-32"
+          className="relative grid place-items-center pb-32"
         >
           <div className="grid w-[min(70%,_1100px)] gap-20">
-            <div className="relative z-10 justify-self-end">
-              <h1 className="font-secondary text-8xl text-dark">
-                {capitalizeFirstLetter(sections[2].name)}
+            <div className="relative z-10 grid place-items-center gap-6 justify-self-end">
+              <h1 className="font-secondary text-5xl text-dark md:text-6xl lg:text-7xl xl:text-8xl">
+                {capitalizeFirstLetter(sections[3].name)}
               </h1>
+              <Bar
+                className="h-6 md:h-7 lg:h-9 xl:h-11"
+                color1={colors.dark}
+                color2={colors.dark}
+              />
             </div>
             <div className="relative z-10">
               <p className="rounded-2xl bg-white/20 p-10 text-2xl backdrop-blur-md">
@@ -309,37 +410,28 @@ export default function Home() {
           ref={sections[4].ref}
           className="relative mt-10 grid place-items-center py-32"
         >
-          <div className="relative grid w-[min(70%,_1100px)] gap-20">
-            <div className="relative z-10">
-              <h1 className="font-secondary text-8xl text-dark">
-                {capitalizeFirstLetter(sections[3].name)}
+          <div className="relative grid w-[min(70%,_1100px)] gap-[30px]">
+            <div className="relative z-10 grid w-fit place-items-center gap-6">
+              <h1 className="font-secondary text-5xl text-dark md:text-6xl lg:text-7xl xl:text-8xl">
+                {capitalizeFirstLetter(sections[4].name)}
               </h1>
+              <Bar
+                className="mb-6 h-6 md:h-7 lg:h-9 xl:h-11"
+                color1={colors.dark}
+                color2={colors.dark}
+              />
             </div>
-            <div className="z-10 flex flex-wrap overflow-hidden rounded-2xl bg-white/50 shadow-lg">
+            <div className="z-10 flex flex-wrap overflow-hidden rounded-2xl bg-white/50">
+              <div className="absolute"></div>
               <div className="flex flex-grow flex-col place-items-center gap-3 bg-white/70 p-10">
                 <h2 className="text-4xl underline">Monday</h2>
                 <p className="text-xl">4:30 pm MT</p>
                 <p className="text-xl"> Zoom Link:</p>
               </div>
               <div className="flex flex-grow flex-col place-items-center gap-3 bg-white/50 p-10">
-                <h2 className="text-4xl underline">Tuesday</h2>
-              </div>
-              <div className="flex flex-grow flex-col place-items-center gap-3 bg-white/70 p-10">
-                <h2 className="text-4xl underline">Wednesday</h2>
-              </div>
-              <div className="flex flex-grow flex-col place-items-center gap-3 bg-white/50 p-10">
-                <h2 className="text-4xl underline">Thursday</h2>
-              </div>
-              <div className="flex flex-grow flex-col place-items-center gap-3 bg-white/70 p-10">
-                <h2 className="text-4xl underline">Friday</h2>
-              </div>
-              <div className="flex flex-grow flex-col place-items-center gap-3 bg-white/50 p-10">
                 <h2 className="text-4xl underline">Saturday</h2>
                 <p className="text-xl">4:30 pm MT</p>
                 <p className="text-xl"> Zoom Link:</p>
-              </div>
-              <div className="flex flex-grow flex-col place-items-center gap-3 bg-white/70 p-10">
-                <h2 className="text-4xl underline">Sunday</h2>
               </div>
               <div className="flex flex-grow flex-col gap-3 p-5">
                 <li className="text-xl"> $5 per class</li>
@@ -347,7 +439,7 @@ export default function Home() {
                 <li className="text-xl">Jansgymonline@gmail.com</li>
               </div>
             </div>
-            <div className="absolute -z-0 h-[calc(100%+150px)] w-[calc(100%+150px)] self-center justify-self-center rounded-2xl bg-light shadow-lg"></div>
+            <div className="absolute -z-0 h-[calc(100%+150px)] w-[calc(100%+150px)] self-center justify-self-center rounded-[100px] border-[30px] border-dark bg-light shadow-lg"></div>
           </div>
         </section>
         <section
@@ -356,10 +448,15 @@ export default function Home() {
           className="relative z-10 grid place-items-center bg-gradient-to-b from-white via-primary to-dark py-32 "
         >
           <div className="relative z-20 grid w-[min(70%,_1100px)] gap-20">
-            <div className="relative z-10 justify-self-end">
-              <h1 className="font-secondary text-8xl text-dark">
-                {capitalizeFirstLetter(sections[4].name)}
+            <div className="relative z-10 grid place-items-center gap-6 justify-self-end">
+              <h1 className="font-secondary text-2xl text-dark sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl">
+                {capitalizeFirstLetter(sections[5].name)}
               </h1>
+              <BarLarge
+                className="h-6 md:h-7 lg:h-9 xl:h-11"
+                color1={colors.dark}
+                color2={colors.dark}
+              />
             </div>
             <div className="grid grid-cols-1 gap-20 lg:grid-cols-2">
               <div className="flex gap-8 rounded-xl bg-white/10 p-8 backdrop-blur-md">
@@ -408,10 +505,16 @@ export default function Home() {
           className="relative z-0 grid place-items-center bg-dark py-32"
         >
           <div className="grid w-[min(70%,_1100px)] gap-20">
-            <div className="relative z-10 justify-self-start">
-              <h1 className="font-secondary text-8xl text-primary">
-                {capitalizeFirstLetter(sections[5].name)}
+            <div className="relative z-10 grid place-items-center gap-6 justify-self-start">
+              <h1 className="font-secondary text-xl text-primary sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
+                {capitalizeFirstLetter(sections[6].name)}
               </h1>
+              <BarLarge
+                gradientId={`${sections[6].name}-bar`}
+                className="h-6 md:h-7 lg:h-9 xl:h-11"
+                color1={colors.primary}
+                color2={colors.primary}
+              />
             </div>
           </div>
         </section>
