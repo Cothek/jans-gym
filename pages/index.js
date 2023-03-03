@@ -14,6 +14,7 @@ import { useRef, useState, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 import JansGymTextLogo from "../components/JansGymTextLogo";
 import BarLarge from "../components/BarLarge";
+import Contact from "../components/Contact";
 
 const colors = theme.theme.extend.colors;
 const sections = [
@@ -24,6 +25,7 @@ const sections = [
   { name: `classes` },
   { name: `supplements` },
   { name: `equipment` },
+  { name: `contact` },
 ];
 
 function setRefs() {
@@ -88,7 +90,7 @@ export default function Home() {
         >
           <div
             className={`${
-              sectionOnScreen === "top" ? "gap-2" : "gap-10"
+              sectionOnScreen === "top" ? "gap-2" : "gap-5"
             } grid h-fit w-fit rounded-2xl bg-white/20 p-6 pb-10 backdrop-blur-lg transition-all duration-300`}
           >
             <div className={`grid`}>
@@ -131,7 +133,7 @@ export default function Home() {
               <h2
                 className={`${
                   sectionOnScreen === "top"
-                    ? "mx-4 mb-[3vh] mt-[calc(3vh+0.5rem)] max-h-full rounded-xl bg-light/50 p-[3.5vh] text-[4.5vh] leading-[6.5vh] text-white opacity-100"
+                    ? "mx-4 mb-[1vh] mt-[calc(3vh+0.5rem)] max-h-full rounded-xl bg-light/50 p-[3.5vh] py-[2vh] text-[4.5vh] leading-[6.5vh] text-white opacity-100"
                     : "m-0 max-h-0 overflow-hidden p-0 text-[0px] opacity-0"
                 } transition-all duration-300`}
               >
@@ -141,7 +143,7 @@ export default function Home() {
             </div>
             <div
               className={`${
-                sectionOnScreen === "top" ? "w-fit " : ""
+                sectionOnScreen === "top" ? "min-w-0 " : ""
               }group/training ml-4 mr-0 flex cursor-pointer place-items-center gap-4 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4`}
               onClick={() => {
                 sections[2].ref.current.scrollIntoView({ behavior: "smooth" });
@@ -170,7 +172,7 @@ export default function Home() {
             </div>
             <div
               className={`${
-                sectionOnScreen === "top" ? "w-fit " : " "
+                sectionOnScreen === "top" ? "min-w-0 " : " "
               }group/profile ml-4 mr-0 flex cursor-pointer place-items-center gap-4 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4`}
               onClick={() => {
                 sections[3].ref.current.scrollIntoView({ behavior: "smooth" });
@@ -199,7 +201,7 @@ export default function Home() {
             </div>
             <div
               className={`${
-                sectionOnScreen === "top" ? "w-fit " : " "
+                sectionOnScreen === "top" ? "min-w-0 " : " "
               }group/classes ml-4 mr-0 flex cursor-pointer place-items-center gap-4 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4`}
               onClick={() => {
                 sections[4].ref.current.scrollIntoView({ behavior: "smooth" });
@@ -228,7 +230,7 @@ export default function Home() {
             </div>
             <div
               className={`${
-                sectionOnScreen === "top" ? "w-fit " : " "
+                sectionOnScreen === "top" ? "min-w-0 " : " "
               }group/supplements ml-4 mr-0 flex cursor-pointer place-items-center gap-4 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4`}
               onClick={() => {
                 sections[5].ref.current.scrollIntoView({ behavior: "smooth" });
@@ -257,7 +259,7 @@ export default function Home() {
             </div>
             <div
               className={`${
-                sectionOnScreen === "top" ? "w-fit " : " "
+                sectionOnScreen === "top" ? "min-w-0 " : " "
               }group/equipment ml-4 mr-0 flex cursor-pointer place-items-center gap-4 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4`}
               onClick={() => {
                 sections[6].ref.current.scrollIntoView({ behavior: "smooth" });
@@ -282,6 +284,35 @@ export default function Home() {
                 } mt-[5px] transition-all group-hover/nav:mr-4 group-hover/nav:max-w-full group-hover/nav:opacity-100`}
               >
                 {capitalizeFirstLetter(sections[6].name)}
+              </h3>
+            </div>
+            <div
+              className={`${
+                sectionOnScreen === "top" ? "min-w-0 " : " "
+              }group/equipment ml-4 mr-0 flex cursor-pointer place-items-center gap-4 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4`}
+              onClick={() => {
+                sections[7].ref.current.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
+              <Contact
+                className={`${
+                  sectionOnScreen === "top" ? "w-[calc(2rem+2vh)]" : "w-16"
+                } ${
+                  sectionOnScreen === sections[7].name
+                    ? `text-primary`
+                    : `text-secondary`
+                } transition-all group-hover/equipment:text-primary`}
+                fill={"currentColor"}
+                stroke={colors.dark}
+              />
+              <h3
+                className={`${
+                  sectionOnScreen === "top"
+                    ? "mr-4 max-w-full text-[calc(1rem+1vh)] opacity-100"
+                    : "mr-0 max-w-0 text-3xl opacity-0"
+                } mt-[5px] transition-all group-hover/nav:mr-4 group-hover/nav:max-w-full group-hover/nav:opacity-100`}
+              >
+                {capitalizeFirstLetter(sections[7].name)}
               </h3>
             </div>
           </div>
@@ -329,7 +360,7 @@ export default function Home() {
               strengthen your body and mind.
             </p>
             <div className="flex flex-wrap justify-around gap-20">
-              <div className="flex h-fit -rotate-6 flex-col gap-3 rounded-2xl bg-secondary p-10 shadow-lg">
+              <div className="flex h-fit flex-col gap-3 rounded-2xl bg-secondary p-10 shadow-lg transition-transform hover:-rotate-6">
                 <h2 className="mb-3 gap-4 font-secondary text-4xl text-dark">
                   Sessions
                 </h2>
@@ -341,7 +372,7 @@ export default function Home() {
                 </li>
                 <li className="text-xl">Zoom Class ($5 / Class)</li>
               </div>
-              <div className="flex rotate-6 flex-col gap-3 rounded-2xl bg-secondary p-10 shadow-lg">
+              <div className="flex flex-col gap-3 rounded-2xl bg-secondary p-10 shadow-lg transition-transform hover:rotate-6">
                 <h2 className="mb-3 gap-4 font-secondary text-4xl text-dark">
                   Certifications
                 </h2>
@@ -411,35 +442,57 @@ export default function Home() {
           className="relative mt-10 grid place-items-center py-32"
         >
           <div className="relative grid w-[min(70%,_1100px)] gap-[30px]">
-            <div className="relative z-10 grid w-fit place-items-center gap-6">
-              <h1 className="font-secondary text-5xl text-dark md:text-6xl lg:text-7xl xl:text-8xl">
+            <div className="relative z-10 grid w-fit place-items-center gap-6 justify-self-center pb-10">
+              <h1 className="font-secondary text-5xl text-white md:text-6xl lg:text-7xl xl:text-8xl">
                 {capitalizeFirstLetter(sections[4].name)}
               </h1>
               <Bar
-                className="mb-6 h-6 md:h-7 lg:h-9 xl:h-11"
-                color1={colors.dark}
-                color2={colors.dark}
+                className="h-6 md:h-7 lg:h-9 xl:h-11"
+                gradientId={sections[4].name + "Bar"}
+                color1={colors.white}
+                color2={colors.white}
               />
             </div>
-            <div className="z-10 flex flex-wrap overflow-hidden rounded-2xl bg-white/50">
-              <div className="absolute"></div>
-              <div className="flex flex-grow flex-col place-items-center gap-3 bg-white/70 p-10">
-                <h2 className="text-4xl underline">Monday</h2>
-                <p className="text-xl">4:30 pm MT</p>
-                <p className="text-xl"> Zoom Link:</p>
-              </div>
-              <div className="flex flex-grow flex-col place-items-center gap-3 bg-white/50 p-10">
-                <h2 className="text-4xl underline">Saturday</h2>
-                <p className="text-xl">4:30 pm MT</p>
-                <p className="text-xl"> Zoom Link:</p>
-              </div>
-              <div className="flex flex-grow flex-col gap-3 p-5">
-                <li className="text-xl"> $5 per class</li>
-                <li className="text-xl">Pay through Zelle</li>
-                <li className="text-xl">Jansgymonline@gmail.com</li>
+            <div className="relative grid pt-10">
+              <div className="self absolute z-10 w-[calc(100%+150px)] -translate-y-full justify-self-center border-b-[30px] border-dark"></div>
+              <div className="relative z-10 flex flex-wrap gap-6">
+                <div className="flex flex-grow flex-col place-items-center gap-3 rounded-2xl bg-white p-8">
+                  <h2 className="text-4xl font-bold tracking-wider text-primary">
+                    <span className="underline">Monday</span>
+                    <span className="text-lg"> (02-24)</span>
+                  </h2>
+                  <p className="text-2xl">4:30 pm MT</p>
+                  <p className="text-2xl"> Zoom Link:</p>
+                </div>
+                <div className="flex flex-grow flex-col place-items-center gap-3 rounded-2xl bg-white p-8">
+                  <h2 className="text-4xl font-bold tracking-wider text-primary underline">
+                    Saturday
+                  </h2>
+                  <p className="text-2xl">4:30 pm MT</p>
+                  <p className="text-2xl"> Zoom Link:</p>
+                </div>
+                <div className="flex flex-grow flex-col gap-3 p-5">
+                  <li className="text-2xl"> $5 per class</li>
+                  <li className="text-2xl">Pay through Zelle</li>
+                  <li className="text-2xl">Jansgymonline@gmail.com</li>
+                </div>
               </div>
             </div>
-            <div className="absolute -z-0 h-[calc(100%+150px)] w-[calc(100%+150px)] self-center justify-self-center rounded-[100px] border-[30px] border-dark bg-light shadow-lg"></div>
+            <div className="absolute -z-0 grid h-[calc(100%+150px)] w-[calc(100%+150px)] grid-cols-5 self-center justify-self-center rounded-[100px] bg-primary shadow-xl">
+              <div className="relative rounded-l-[100px] border-y-[30px] border-l-[30px] border-dark bg-transparent"></div>
+              <div className="relative grid border-b-[30px] border-dark bg-transparent">
+                <div className="absolute w-[30px] -translate-x-1/2 rounded-full border-t-[30px] border-dark"></div>
+                <div className="absolute h-[120px] -translate-y-1/2 justify-self-center rounded-full border-l-[30px] border-dark"></div>
+                <div className="absolute right-0 w-[30px] translate-x-1/2 rounded-full border-t-[30px] border-dark"></div>
+              </div>
+              <div className="relative border-y-[30px] border-dark bg-transparent"></div>
+              <div className="relative grid border-b-[30px] border-dark bg-transparent">
+                <div className="absolute w-[30px] -translate-x-1/2 rounded-full border-t-[30px] border-dark"></div>
+                <div className="absolute h-[120px] -translate-y-1/2 justify-self-center rounded-full border-l-[30px] border-dark"></div>
+                <div className="absolute right-0 w-[30px] translate-x-1/2 rounded-full border-t-[30px] border-dark"></div>
+              </div>
+              <div className="relative rounded-r-[100px] border-y-[30px] border-r-[30px] border-dark bg-transparent"></div>
+            </div>
           </div>
         </section>
         <section
@@ -511,6 +564,25 @@ export default function Home() {
               </h1>
               <BarLarge
                 gradientId={`${sections[6].name}-bar`}
+                className="h-6 md:h-7 lg:h-9 xl:h-11"
+                color1={colors.primary}
+                color2={colors.primary}
+              />
+            </div>
+          </div>
+        </section>
+        <section
+          id={sections[7].name}
+          ref={sections[7].ref}
+          className="relative z-0 grid place-items-center bg-dark py-32"
+        >
+          <div className="grid w-[min(70%,_1100px)] gap-20">
+            <div className="relative z-10 grid place-items-center gap-6 justify-self-end">
+              <h1 className="font-secondary text-xl text-primary sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
+                {capitalizeFirstLetter(sections[7].name)}
+              </h1>
+              <BarLarge
+                gradientId={`${sections[7].name}-bar`}
                 className="h-6 md:h-7 lg:h-9 xl:h-11"
                 color1={colors.primary}
                 color2={colors.primary}
