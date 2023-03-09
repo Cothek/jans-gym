@@ -63,6 +63,7 @@ function useOnScreen(ref) {
 
 export default function Home() {
   const [sectionOnScreen, setSectionOnScreen] = useState("home");
+  const [dates, setDates] = useState([]);
   const mobileHeight = useMediaQuery({ maxHeight: 700 });
   const mobileWidth = useMediaQuery({ maxWidth: 1024 });
   const [isMobile, setIsMobile] = useState(false);
@@ -73,6 +74,10 @@ export default function Home() {
   useEffect(() => {
     setIsMobile(mobileHeight || mobileWidth);
   });
+
+  useEffect(() => {
+    getDates();
+  }, []);
 
   useEffect(() => {
     sections.forEach((item) => {
@@ -96,6 +101,23 @@ export default function Home() {
     });
 
     setMenuOpen(false);
+  }
+
+  async function getDates() {
+    console.log(`FETCHING`);
+    const response = await fetch(`/api/calendar`, {
+      method: `GET`,
+      mode: `cors`,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (response.ok) {
+      setDates(await response.json());
+    } else {
+      // TODO: Handle error
+    }
   }
 
   return (
@@ -550,7 +572,9 @@ export default function Home() {
               <div className="relative z-10 flex flex-wrap gap-6">
                 <div className="flex flex-grow flex-col place-items-center gap-3 rounded-2xl bg-white p-4 sm:p-8">
                   <h2 className="text-2xl font-bold tracking-wider text-primary md:text-4xl">
-                    <span className="underline">Monday</span>
+                    <span className="underline">
+                      {new Date(dates[0]?.date).toLocaleDateString()}
+                    </span>
                     <span className="text-lg"> (02-24)</span>
                   </h2>
                   <p className="text-xl sm:text-2xl">4:30 pm MT</p>

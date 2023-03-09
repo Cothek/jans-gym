@@ -16,8 +16,7 @@ export default async (req, res) => {
 
     try {
       const results = await calendar.events.list({
-        calendarId:
-          "97d01b997155373b8a6dc020d6c12198a8be04d28b979d07601e709b6dd2d9ab@group.calendar.google.com",
+        calendarId: process.env.CALENDAR_ID,
         timeMin: new Date().toISOString(),
         maxResults: 4,
         singleEvents: true,
@@ -25,7 +24,7 @@ export default async (req, res) => {
       });
 
       const eventDates = results.data.items.reduce((dates, event) => {
-        return [...dates, { date: event.start.dateTime }];
+        return [...dates, { date: event.start.dateTime, title: event.summary }];
       }, []);
 
       res.status(200).json(eventDates);
