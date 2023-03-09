@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
   content: [
@@ -15,6 +16,10 @@ module.exports = {
         white: "#FFFFFF",
         dark: "#394856",
         light: "#9DADBC",
+      },
+      screens: {
+        xs: "376px",
+        ...defaultTheme.screens,
       },
       backgroundImage: {
         "supplements-pattern": "url('/supplements-pattern.svg')",
