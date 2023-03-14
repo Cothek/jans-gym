@@ -15,6 +15,7 @@ import { useMediaQuery } from "react-responsive";
 import JansGymTextLogo from "../components/JansGymTextLogo";
 import BarLarge from "../components/BarLarge";
 import Contact from "../components/Contact";
+import NoClass from "../components/NoClass";
 
 const colors = theme.theme.extend.colors;
 const sections = [
@@ -114,7 +115,13 @@ export default function Home() {
     });
 
     if (response.ok) {
-      setDates(await response.json());
+      const tempDates = await response.json();
+
+      setDates(
+        tempDates?.reduce((datesArray, { title, date: tempDate }) => {
+          return [...datesArray, { title, date: new Date(tempDate) }];
+        }, [])
+      );
     } else {
       // TODO: Handle error
     }
@@ -127,7 +134,9 @@ export default function Home() {
       </Head>
       <div className="Content">
         <nav
-          className={`${sectionOnScreen === "top" ? "" : "group/nav "}${
+          className={`${
+            sectionOnScreen === "top" ? "" : isMobile ? "" : "group/nav "
+          }${
             isMobile && isMenuOpen
               ? "w-full "
               : sectionOnScreen === "top"
@@ -241,7 +250,7 @@ export default function Home() {
               <div
                 className={`${
                   sectionOnScreen === "top" ? "min-w-0 " : ""
-                }group/training mr-0 flex cursor-pointer place-items-center gap-4 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4 sm:ml-4`}
+                }group/training mr-0 flex cursor-pointer place-items-center gap-4 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4 sm:mx-4 md:w-fit`}
                 data-section={2}
                 onClick={scrollToSection}
               >
@@ -262,6 +271,8 @@ export default function Home() {
                   className={`${
                     sectionOnScreen === "top"
                       ? "mr-4 max-w-full text-[calc(1rem+1vh)] opacity-100"
+                      : isMobile
+                      ? "mr-4 text-2xl opacity-100 sm:text-3xl"
                       : "mr-0 max-w-0 text-2xl opacity-0 sm:text-3xl"
                   } mt-[5px] transition-all group-hover/nav:mr-4 group-hover/nav:max-w-full group-hover/nav:opacity-100`}
                 >
@@ -271,7 +282,7 @@ export default function Home() {
               <div
                 className={`${
                   sectionOnScreen === "top" ? "min-w-0 " : " "
-                }group/profile mr-0 flex cursor-pointer place-items-center gap-4 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4 sm:ml-4`}
+                }group/profile mr-0 flex cursor-pointer place-items-center gap-4 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4 sm:mx-4 md:w-fit`}
                 data-section={3}
                 onClick={scrollToSection}
               >
@@ -292,6 +303,8 @@ export default function Home() {
                   className={`${
                     sectionOnScreen === "top"
                       ? "mr-4 max-w-full text-[calc(1rem+1vh)] opacity-100"
+                      : isMobile
+                      ? "mr-4 text-2xl opacity-100 sm:text-3xl"
                       : "mr-0 max-w-0 text-2xl opacity-0 sm:text-3xl"
                   } mt-[5px] transition-all group-hover/nav:mr-4 group-hover/nav:max-w-full group-hover/nav:opacity-100`}
                 >
@@ -301,7 +314,7 @@ export default function Home() {
               <div
                 className={`${
                   sectionOnScreen === "top" ? "min-w-0 " : " "
-                }group/classes mr-0 flex cursor-pointer place-items-center gap-4 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4 sm:ml-4`}
+                }group/classes mr-0 flex cursor-pointer place-items-center gap-4 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4 sm:mx-4 md:w-fit`}
                 data-section={4}
                 onClick={scrollToSection}
               >
@@ -322,6 +335,8 @@ export default function Home() {
                   className={`${
                     sectionOnScreen === "top"
                       ? "mr-4 max-w-full text-[calc(1rem+1vh)] opacity-100"
+                      : isMobile
+                      ? "mr-4 text-2xl opacity-100 sm:text-3xl"
                       : "mr-0 max-w-0 text-2xl opacity-0 sm:text-3xl"
                   } mt-[5px] transition-all group-hover/nav:mr-4 group-hover/nav:max-w-full group-hover/nav:opacity-100`}
                 >
@@ -331,7 +346,7 @@ export default function Home() {
               <div
                 className={`${
                   sectionOnScreen === "top" ? "min-w-0 " : " "
-                }group/supplements mr-0 flex cursor-pointer place-items-center gap-4 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4 sm:ml-4`}
+                }group/supplements mr-0 flex cursor-pointer place-items-center gap-4 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4 sm:mx-4 md:w-fit`}
                 data-section={5}
                 onClick={scrollToSection}
               >
@@ -352,6 +367,8 @@ export default function Home() {
                   className={`${
                     sectionOnScreen === "top"
                       ? "mr-4 max-w-full text-[calc(1rem+1vh)] opacity-100"
+                      : isMobile
+                      ? "mr-4 text-2xl opacity-100 sm:text-3xl"
                       : "mr-0 max-w-0 text-2xl opacity-0 sm:text-3xl"
                   } mt-[5px] transition-all group-hover/nav:mr-4 group-hover/nav:max-w-full group-hover/nav:opacity-100`}
                 >
@@ -361,7 +378,7 @@ export default function Home() {
               <div
                 className={`${
                   sectionOnScreen === "top" ? "min-w-0 " : " "
-                }group/equipment mr-0 flex cursor-pointer place-items-center gap-4 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4 sm:ml-4`}
+                }group/equipment mr-0 flex cursor-pointer place-items-center gap-4 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4 sm:mx-4 md:w-fit`}
                 data-section={6}
                 onClick={scrollToSection}
               >
@@ -382,6 +399,8 @@ export default function Home() {
                   className={`${
                     sectionOnScreen === "top"
                       ? "mr-4 max-w-full text-[calc(1rem+1vh)] opacity-100"
+                      : isMobile
+                      ? "mr-4 text-2xl opacity-100 sm:text-3xl"
                       : "mr-0 max-w-0 text-2xl opacity-0 sm:text-3xl"
                   } mt-[5px] transition-all group-hover/nav:mr-4 group-hover/nav:max-w-full group-hover/nav:opacity-100`}
                 >
@@ -391,7 +410,7 @@ export default function Home() {
               <div
                 className={`${
                   sectionOnScreen === "top" ? "min-w-0 " : " "
-                }group/equipment mr-0 flex cursor-pointer place-items-center gap-4 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4 sm:ml-4`}
+                }group/equipment mr-0 flex cursor-pointer place-items-center gap-4 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4 sm:mx-4 md:w-fit`}
                 data-section={7}
                 onClick={scrollToSection}
               >
@@ -412,6 +431,8 @@ export default function Home() {
                   className={`${
                     sectionOnScreen === "top"
                       ? "mr-4 max-w-full text-[calc(1rem+1vh)] opacity-100"
+                      : isMobile
+                      ? "mr-4 text-2xl opacity-100 sm:text-3xl"
                       : "mr-0 max-w-0 text-2xl opacity-0 sm:text-3xl"
                   } mt-[5px] transition-all group-hover/nav:mr-4 group-hover/nav:max-w-full group-hover/nav:opacity-100`}
                 >
@@ -450,18 +471,19 @@ export default function Home() {
             <div className="absolute top-0 h-full w-1/2 -translate-x-1 bg-gradient-to-r from-white to-transparent"></div>
           </div>
         </section>
+        {/* Training */}
         <section
           id={sections[2].name}
           ref={sections[2].ref}
           className="relative z-10 grid place-items-center overflow-x-clip bg-gradient-to-r from-secondary to-secondary-dark py-[10%] text-white"
         >
           <div className="relative z-10 grid w-10/12 gap-20 xs:w-4/5 sm:w-[min(70%,_1100px)]">
-            <div className="grid w-fit place-items-center gap-2 md:gap-4 lg:gap-6">
-              <h1 className="font-secondary text-3xl text-dark xs:text-4xl md:text-6xl lg:text-7xl xl:text-8xl">
+            <div className="grid w-fit place-items-center gap-1 xs:gap-2 md:gap-4 lg:gap-6">
+              <h1 className="font-secondary text-[1.95rem] text-dark xs:text-4xl sm:text-6xl lg:text-7xl xl:text-8xl">
                 {capitalizeFirstLetter(sections[2].name)}
               </h1>
               <Bar
-                className="h-4 md:h-7 lg:h-9 xl:h-11"
+                className="h-5 md:h-7 lg:h-9 xl:h-11"
                 color1={colors.dark}
                 color2={colors.dark}
               />
@@ -473,71 +495,87 @@ export default function Home() {
               experience and backed by numerous certifications she can help you
               strengthen your body and mind.
             </p>
-            <div className="flex flex-wrap justify-around gap-20">
-              <div className="flex h-fit flex-col gap-3 rounded-2xl bg-secondary p-6 shadow-lg transition-transform hover:-rotate-6 sm:p-10">
-                <h2 className="mb-3 gap-4 self-center font-secondary text-2xl text-dark md:text-4xl">
+            <div className="grid place-items-center gap-10 lg:grid-flow-col">
+              <div className="flex h-fit w-full flex-col gap-3 self-start rounded-2xl bg-secondary p-8 shadow-lg transition-transform hover:-rotate-6 sm:p-10 lg:w-auto">
+                <h2 className="gap-4 self-center font-secondary text-2xl text-dark md:mb-3 md:text-4xl">
                   Sessions
                 </h2>
-                <li className="text-lg md:text-xl">
-                  Pilates Reformer ($60 / Private Session)
-                </li>
-                <li className="text-lg md:text-xl">
-                  Personal Training ($60 / Private Session)
-                </li>
-                <li className="text-lg md:text-xl">Zoom Class ($5 / Class)</li>
+                <ul className="ml-4 grid list-outside list-disc gap-3">
+                  <li className="text-lg md:text-xl">
+                    Pilates Reformer ($60 / Private Session)
+                  </li>
+                  <li className="text-lg md:text-xl">
+                    Personal Training ($60 / Private Session)
+                  </li>
+                  <li className="text-lg md:text-xl">
+                    Zoom Class ($5 / Class)
+                  </li>
+                </ul>
               </div>
-              <div className="flex flex-col gap-3 rounded-2xl bg-secondary p-6 shadow-lg transition-transform hover:rotate-6 sm:p-10">
-                <h2 className="mb-3 gap-4 self-center font-secondary text-2xl text-dark md:text-4xl">
+              <div className="flex w-full flex-col gap-3 rounded-2xl bg-secondary p-8 shadow-lg transition-transform hover:rotate-6 sm:p-10 lg:w-auto">
+                <h2 className="gap-4 self-center font-secondary text-2xl text-dark md:mb-3 md:text-4xl">
                   Certifications
                 </h2>
-                <li className="text-lg md:text-xl">NASM</li>
-                <li className="text-lg md:text-xl">Stott Pilates</li>
-                <li className="text-lg md:text-xl">Johnny G spin certified</li>
-                <li className="text-lg md:text-xl">
-                  Institute of Integrated Nutrition (IIN) certified
-                </li>
-                <li className="text-lg md:text-xl">CPR/AED certified</li>
+                <ul className="ml-4 grid list-outside list-disc gap-3">
+                  <li className="text-lg md:text-xl">NASM</li>
+                  <li className="text-lg md:text-xl">Stott Pilates</li>
+                  <li className="text-lg md:text-xl">
+                    Johnny G spin certified
+                  </li>
+                  <li className="text-lg md:text-xl">
+                    Institute of Integrated Nutrition (IIN) certified
+                  </li>
+                  <li className="text-lg md:text-xl">CPR/AED certified</li>
+                </ul>
               </div>
             </div>
           </div>
         </section>
+        {/* Profile */}
         <section
           id={sections[3].name}
           ref={sections[3].ref}
           className="relative grid place-items-center py-20 sm:py-32"
         >
           <div className="grid w-4/5 gap-20 xs:w-10/12 sm:w-[min(70%,_1100px)]">
-            <div className="relative z-10 grid place-items-center gap-2 justify-self-end md:gap-4 lg:gap-6">
-              <h1 className="font-secondary text-3xl text-dark xs:text-4xl md:text-6xl lg:text-7xl xl:text-8xl">
+            <div className="relative z-10 grid place-items-center gap-1 justify-self-end xs:gap-2 md:gap-4 lg:gap-6">
+              <h1 className="font-secondary text-[1.95rem] text-dark xs:text-4xl sm:text-6xl lg:text-7xl xl:text-8xl">
                 {capitalizeFirstLetter(sections[3].name)}
               </h1>
               <Bar
-                className="h-6 md:h-7 lg:h-9 xl:h-11"
+                className="h-5 md:h-7 lg:h-9 xl:h-11"
                 color1={colors.dark}
                 color2={colors.dark}
               />
             </div>
             <div className="relative z-10">
-              <p className="rounded-2xl bg-white/20 p-4 text-lg backdrop-blur-md sm:p-10 md:text-2xl">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                congue dictum libero. Sed in neque in libero imperdiet
-                consectetur id in tellus. Sed feugiat, mi nec suscipit volutpat,
-                est sem tincidunt sem, non dapibus lorem sapien eu ante.
-                Phasellus lectus neque, dapibus id nulla sed, hendrerit auctor
-                tellus. Vestibulum hendrerit, justo vitae ullamcorper eleifend,
-                magna ante vulputate diam, in mollis dolor dui vitae purus.
-                Aenean lacinia tellus ut urna semper tincidunt. Pellentesque
-                venenatis nibh vitae ultricies dignissim. Etiam molestie sapien
-                ac mi euismod dictum. Mauris congue dignissim commodo. Morbi
-                rhoncus neque sed felis euismod fermentum. Vestibulum aliquet
-                eleifend augue, sed eleifend mi. Integer vel ipsum tincidunt,
-                volutpat leo a, vulputate lacus. Duis iaculis ligula non ornare
-                maximus. Vivamus egestas dignissim sapien, sit amet finibus
-                massa viverra eget. Aliquam venenatis felis quis augue feugiat,
-                ut finibus eros bibendum. Nunc luctus, massa sed eleifend
-                tincidunt, sem tellus placerat tellus, ac pharetra lacus ipsum
-                bibendum erat.
-              </p>
+              <div className="rounded-2xl bg-white/20 p-4 text-lg leading-6 backdrop-blur-md sm:p-10 md:text-2xl md:leading-8">
+                <p>
+                  Please, allow me to take a moment to introduce myself, and
+                  explain a personal service I am excited to offer you.
+                  <br />
+                  <br />
+                  My name is Jan Stevenson. I have been involved and practicing
+                  personal training for over 40 years. I have worked with a
+                  volume of clients through personal individual training, and
+                  group training in many facilities that you may recognize
+                  (Tucson Athletic Club, LaMancha Athletic Club, LaCamarilla
+                  Athletic Club, Moon Valley Country Club, ?????). I have been
+                  an active member of IDEA for over ?? years and have recently
+                  earned the “IDEA Inspiration Award”.
+                  <br />
+                  <br />
+                  It is obvious from the many years I have been training that I
+                  am actively involved not due to financial necessity, but as a
+                  result of passion. We all want better health and fitness, and
+                  we strive our entire lives for that result. I love to assist
+                  others in this quest, and you will find my enthusiasm to be
+                  encouraging.
+                  <br />
+                  <br />I would love to prove it to you! Give me a call at #####
+                  and we can begin the process today.
+                </p>
+              </div>
             </div>
           </div>
           <div className="absolute z-0 grid h-[120%] place-self-center overflow-hidden object-cover">
@@ -550,78 +588,114 @@ export default function Home() {
             />
           </div>
         </section>
+        {/* Classes */}
         <section
           id={sections[4].name}
           ref={sections[4].ref}
-          className="relative grid place-items-center py-32"
+          className="relative z-10 grid place-items-center pt-32 pb-12 sm:pb-32"
         >
-          <div className="relative grid w-9/12 gap-[30px] p-6 xs:w-[min(60%,_1100px)]">
-            <div className="relative z-10 grid w-fit place-items-center gap-2 justify-self-center pb-10 md:gap-4 lg:gap-6">
-              <h1 className="font-secondary text-3xl text-white xs:text-4xl md:text-6xl lg:text-7xl xl:text-8xl">
+          <div className="relative grid w-9/12 gap-[30px] p-1 xs:p-6 sm:w-[min(60%,_1100px)]">
+            <div className="relative z-10 grid w-fit place-items-center gap-1 justify-self-center pb-6 xs:gap-2 sm:pb-10 md:gap-4 lg:gap-6">
+              <h1 className="font-secondary text-[1.95rem] text-white xs:text-4xl sm:text-6xl lg:text-7xl xl:text-8xl">
                 {capitalizeFirstLetter(sections[4].name)}
               </h1>
               <Bar
-                className="h-6 md:h-7 lg:h-9 xl:h-11"
+                className="h-5 md:h-7 lg:h-9 xl:h-11"
                 gradientId={sections[4].name + "Bar"}
                 color1={colors.white}
                 color2={colors.white}
               />
             </div>
-            <div className="relative grid pt-10">
-              <div className="absolute z-10 w-[130%] -translate-y-full justify-self-center border-b-[30px] border-dark xs:w-[calc(100%+70px)] sm:w-[calc(100%+150px)]"></div>
+            <div className="relative grid pt-12 sm:pt-16">
+              <div className="absolute z-10 w-[130%] -translate-y-full justify-self-center border-b-[15px] border-dark xs:w-[calc(100%+100px)] sm:w-[calc(100%+150px)] sm:border-b-[30px]"></div>
               <div className="relative z-10 flex flex-wrap gap-6">
-                <div className="flex flex-grow flex-col place-items-center gap-3 rounded-2xl bg-white p-4 sm:p-8">
-                  <h2 className="text-2xl font-bold tracking-wider text-primary md:text-4xl">
-                    <span className="underline">
-                      {new Date(dates[0]?.date).toLocaleDateString()}
-                    </span>
-                    <span className="text-lg"> (02-24)</span>
-                  </h2>
-                  <p className="text-xl sm:text-2xl">4:30 pm MT</p>
-                  <p className="text-xl sm:text-2xl"> Zoom Link:</p>
-                </div>
-                <div className="flex flex-grow flex-col place-items-center gap-3 rounded-2xl bg-white p-4 sm:p-8">
-                  <h2 className="text-2xl font-bold tracking-wider text-primary underline md:text-4xl">
-                    <span className="underline">Saturday</span>
-                    <span className="text-lg"> (02-29)</span>
-                  </h2>
-                  <p className="text-xl sm:text-2xl">4:30 pm MT</p>
-                  <p className="text-xl sm:text-2xl"> Zoom Link:</p>
-                </div>
-                <div className="flex flex-grow flex-col justify-center gap-3">
+                {dates[0] ? (
+                  <div className="flex flex-grow flex-col place-items-center gap-1 rounded-2xl bg-white p-4 sm:gap-3 sm:p-8">
+                    <h2 className="text-2xl font-bold tracking-wider text-primary sm:text-4xl">
+                      <span className="underline">
+                        {dates[0]?.date.toLocaleDateString(`en-us`, {
+                          weekday: `long`,
+                        })}
+                      </span>
+                      <span className="text-lg">{` (${dates[0]?.date.toLocaleDateString(
+                        `en-us`,
+                        {
+                          month: `numeric`,
+                          day: `numeric`,
+                        }
+                      )})`}</span>
+                    </h2>
+                    <p className="text-xl sm:text-2xl">{`${dates[0].date.toLocaleTimeString(
+                      "en-US",
+                      { timeStyle: `short` }
+                    )} MT`}</p>
+                    <p className="text-xl sm:text-2xl"> Zoom Link:</p>
+                  </div>
+                ) : (
+                  <NoClass />
+                )}
+                {dates[0] ? (
+                  <div className="flex flex-grow flex-col place-items-center gap-1 rounded-2xl bg-white p-4 sm:gap-3 sm:p-8">
+                    <h2 className="text-2xl font-bold tracking-wider text-primary sm:text-4xl">
+                      <span className="underline">
+                        {dates[1]?.date.toLocaleDateString(`en-us`, {
+                          weekday: `long`,
+                        })}
+                      </span>
+                      <span className="text-lg">{` (${dates[1]?.date.toLocaleDateString(
+                        `en-us`,
+                        {
+                          month: `numeric`,
+                          day: `numeric`,
+                        }
+                      )})`}</span>
+                    </h2>
+                    <p className="text-xl sm:text-2xl">{`${dates[1].date.toLocaleTimeString(
+                      "en-US",
+                      { timeStyle: `short` }
+                    )} MT`}</p>
+                    <p className="text-xl sm:text-2xl"> Zoom Link:</p>
+                  </div>
+                ) : (
+                  <NoClass />
+                )}
+                <div className="flex flex-grow flex-col justify-center gap-1 sm:gap-3">
                   <li className="text-xl sm:text-2xl"> $5 per class</li>
                   <li className="text-xl sm:text-2xl">Pay through Zelle</li>
-                  <li className="break-all text-xl sm:text-2xl">
-                    Jansgymonline@gmail.com
+                  <li className="break-all text-xl transition-colors duration-300 hover:text-secondary-dark sm:text-2xl">
+                    <a href="mailto:Jansgymonline@gmail.com">
+                      Jansgymonline@gmail.com
+                    </a>
                   </li>
                 </div>
               </div>
             </div>
-            <div className="absolute -z-0 grid h-[calc(100%+50px)] w-[calc(100%+50px)] grid-cols-5 self-center justify-self-center rounded-[100px] bg-primary shadow-xl sm:h-[calc(100%+150px)] sm:w-[calc(100%+150px)]">
-              <div className="relative rounded-l-[100px] border-y-[30px] border-l-[30px] border-dark bg-transparent"></div>
-              <div className="relative grid border-b-[30px] border-dark bg-transparent">
-                <div className="absolute w-[30px] -translate-x-1/2 rounded-full border-t-[30px] border-dark"></div>
-                <div className="absolute h-[120px] -translate-y-1/2 justify-self-center rounded-full border-l-[30px] border-dark"></div>
-                <div className="absolute right-0 w-[30px] translate-x-1/2 rounded-full border-t-[30px] border-dark"></div>
+            <div className="absolute -z-0 grid h-[calc(100%+80px)] w-[calc(100%+80px)] grid-cols-5 self-center justify-self-center rounded-[100px] bg-primary shadow-xl sm:h-[calc(100%+150px)] sm:w-[calc(100%+150px)]">
+              <div className="relative rounded-l-[100px] border-y-[15px] border-l-[15px] border-dark bg-transparent sm:border-y-[30px] sm:border-l-[30px]"></div>
+              <div className="relative grid border-b-[15px] border-dark bg-transparent sm:border-b-[30px]">
+                <div className="absolute w-[30px] -translate-x-1/2 rounded-full border-t-[15px] border-dark sm:border-t-[30px]"></div>
+                <div className="absolute h-[80px] -translate-y-1/2 justify-self-center rounded-full border-l-[15px] border-dark sm:h-[120px] sm:border-l-[30px]"></div>
+                <div className="absolute right-0 w-[30px] translate-x-1/2 rounded-full border-t-[15px] border-dark sm:border-t-[30px]"></div>
               </div>
-              <div className="relative border-y-[30px] border-dark bg-transparent"></div>
-              <div className="relative grid border-b-[30px] border-dark bg-transparent">
-                <div className="absolute w-[30px] -translate-x-1/2 rounded-full border-t-[30px] border-dark"></div>
-                <div className="absolute h-[120px] -translate-y-1/2 justify-self-center rounded-full border-l-[30px] border-dark"></div>
-                <div className="absolute right-0 w-[30px] translate-x-1/2 rounded-full border-t-[30px] border-dark"></div>
+              <div className="relative border-y-[15px] border-dark bg-transparent sm:border-y-[30px]"></div>
+              <div className="relative grid border-b-[15px] border-dark bg-transparent sm:border-b-[30px]">
+                <div className="absolute w-[30px] -translate-x-1/2 rounded-full border-t-[15px] border-dark sm:border-t-[30px]"></div>
+                <div className="absolute h-[80px] -translate-y-1/2 justify-self-center rounded-full border-l-[15px] border-dark sm:h-[120px] sm:border-l-[30px]"></div>
+                <div className="absolute right-0 w-[30px] translate-x-1/2 rounded-full border-t-[15px] border-dark sm:border-t-[30px]"></div>
               </div>
-              <div className="relative rounded-r-[100px] border-y-[30px] border-r-[30px] border-dark bg-transparent"></div>
+              <div className="relative rounded-r-[100px] border-y-[15px] border-r-[15px] border-dark bg-transparent sm:border-y-[30px] sm:border-r-[30px]"></div>
             </div>
           </div>
         </section>
+        {/* Supplements */}
         <section
           id={sections[5].name}
           ref={sections[5].ref}
-          className="relative z-10 grid place-items-center bg-gradient-to-b from-white via-primary to-dark py-32 "
+          className="relative grid place-items-center bg-gradient-to-b from-white via-primary to-dark py-32 "
         >
-          <div className="relative z-20 grid w-4/5 gap-20 xs:w-10/12 sm:w-[min(70%,_1100px)]">
-            <div className="relative z-10 grid place-items-center gap-2 justify-self-end md:gap-4 lg:gap-6">
-              <h1 className="font-secondary text-3xl text-dark xs:text-4xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl">
+          <div className="relative z-20 grid w-4/5 gap-10 xs:w-10/12 sm:w-[min(70%,_1100px)] sm:gap-20">
+            <div className="relative z-10 grid place-items-center gap-1 justify-self-start xs:gap-2 md:gap-4 lg:gap-6">
+              <h1 className="font-secondary text-[1.95rem] text-dark xs:text-4xl sm:text-6xl lg:text-7xl xl:text-8xl">
                 {capitalizeFirstLetter(sections[5].name)}
               </h1>
               <BarLarge
@@ -630,39 +704,48 @@ export default function Home() {
                 color2={colors.dark}
               />
             </div>
-            <div className="grid grid-cols-1 gap-20 lg:grid-cols-2">
-              <div className="flex gap-8 rounded-xl bg-white/10 p-8 backdrop-blur-md">
-                <RoexLogo className="w-20 self-start pt-2 text-secondary-dark" />
-                <div className="flex flex-col gap-3">
-                  <h2 className="font-secondary text-2xl text-secondary-dark sm:text-4xl">
+            <div className="flex flex-wrap gap-10 sm:gap-20">
+              <div className="flex min-w-[40%] max-w-full flex-grow flex-col gap-4 rounded-xl bg-white/10 p-8 backdrop-blur-md sm:gap-6 md:max-w-[60%]">
+                <div className="flex place-items-center justify-start gap-6">
+                  <RoexLogo className="min-h-[40px] max-w-[40px] self-start pt-2 text-secondary-dark sm:max-w-[80px]" />
+
+                  <h2 className="font-secondary text-xl text-secondary-dark xs:text-3xl sm:text-4xl">
                     Roex
                   </h2>
+                </div>
+                <ul className="list-outide col-span-2 ml-4 grid list-disc gap-3">
                   <li>Supplement 1</li>
                   <li>Supplement 2</li>
                   <li>Supplement 3</li>
-                </div>
+                </ul>
               </div>
-              <div className="flex gap-8 rounded-xl bg-white/10 p-8 backdrop-blur-md">
-                <ThornLogo className="w-20 self-start pt-2 text-secondary-dark" />
-                <div className="flex flex-col gap-3">
-                  <h2 className="font-secondary text-2xl text-secondary-dark sm:text-4xl">
-                    Thorne
+              <div className="flex min-w-[40%] max-w-full flex-grow flex-col gap-4 rounded-xl bg-white/10 p-8 backdrop-blur-md sm:gap-6 md:max-w-[60%]">
+                <div className="flex place-items-center justify-start gap-6">
+                  <ThornLogo className="min-h-[40px] max-w-[40px] self-start pt-2 text-secondary-dark sm:max-w-[80px]" />
+
+                  <h2 className="font-secondary text-xl text-secondary-dark xs:text-3xl sm:text-4xl">
+                    Thorn
                   </h2>
+                </div>
+                <ul className="list-outide col-span-2 ml-4 grid list-disc gap-3">
                   <li>Supplement 1</li>
                   <li>Supplement 2</li>
                   <li>Supplement 3</li>
-                </div>
+                </ul>
               </div>
-              <div className="flex gap-8 rounded-xl bg-white/10 p-8 backdrop-blur-md">
-                <FullscriptLogo className="w-20 self-start pt-2 text-secondary-dark" />
-                <div className="flex flex-col gap-3">
-                  <h2 className="font-secondary text-2xl text-secondary-dark sm:text-4xl">
+              <div className="flex min-w-[40%] max-w-full flex-grow flex-col gap-4 rounded-xl bg-white/10 p-8 backdrop-blur-md sm:gap-6 md:max-w-[60%]">
+                <div className="flex place-items-center justify-start gap-6">
+                  <FullscriptLogo className="min-h-[40px] max-w-[40px] self-start pt-2 text-secondary-dark sm:max-w-[80px]" />
+
+                  <h2 className="font-secondary text-xl text-secondary-dark xs:text-3xl sm:text-4xl">
                     Fullscript
                   </h2>
+                </div>
+                <ul className="list-outide col-span-2 ml-4 grid list-disc gap-3">
                   <li>Supplement 1</li>
                   <li>Supplement 2</li>
                   <li>Supplement 3</li>
-                </div>
+                </ul>
               </div>
             </div>
           </div>
@@ -678,7 +761,7 @@ export default function Home() {
         >
           <div className="grid w-4/5 gap-20 xs:w-10/12 sm:w-[min(70%,_1100px)]">
             <div className="relative z-10 grid place-items-center gap-2 justify-self-start md:gap-4 lg:gap-6">
-              <h1 className="font-secondary text-3xl text-primary xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
+              <h1 className="font-secondary text-[1.95rem] text-primary xs:text-4xl sm:text-6xl lg:text-7xl xl:text-8xl">
                 {capitalizeFirstLetter(sections[6].name)}
               </h1>
               <BarLarge
@@ -697,7 +780,7 @@ export default function Home() {
         >
           <div className="grid w-4/5 gap-20 xs:w-10/12 sm:w-[min(70%,_1100px)]">
             <div className="relative z-10 grid place-items-center gap-2 justify-self-end md:gap-4 lg:gap-6">
-              <h1 className="font-secondary text-3xl text-primary xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
+              <h1 className="font-secondary text-[1.95rem] text-primary xs:text-4xl sm:text-6xl lg:text-7xl xl:text-8xl">
                 {capitalizeFirstLetter(sections[7].name)}
               </h1>
               <BarLarge
