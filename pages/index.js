@@ -249,8 +249,12 @@ export default function Home() {
             >
               <div
                 className={`${
-                  sectionOnScreen === "top" ? "min-w-0 " : ""
-                }group/training mr-0 flex cursor-pointer place-items-center gap-0 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4 group-hover/nav:gap-4 sm:mx-4 md:w-fit`}
+                  sectionOnScreen === "top"
+                    ? "min-w-0 gap-4"
+                    : isMobile && isMenuOpen
+                    ? "gap-4"
+                    : "gap-0"
+                } group/training mr-0 flex cursor-pointer place-items-center rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4 group-hover/nav:gap-4 sm:mx-4 md:w-fit`}
                 data-section={2}
                 onClick={scrollToSection}
               >
@@ -281,8 +285,12 @@ export default function Home() {
               </div>
               <div
                 className={`${
-                  sectionOnScreen === "top" ? "min-w-0 " : " "
-                }group/profile mr-0 flex cursor-pointer place-items-center gap-0 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4 group-hover/nav:gap-4 sm:mx-4 md:w-fit`}
+                  sectionOnScreen === "top"
+                    ? "min-w-0 gap-4"
+                    : isMobile && isMenuOpen
+                    ? "gap-4"
+                    : "gap-0"
+                } group/profile mr-0 flex cursor-pointer place-items-center rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4 group-hover/nav:gap-4 sm:mx-4 md:w-fit`}
                 data-section={3}
                 onClick={scrollToSection}
               >
@@ -313,8 +321,12 @@ export default function Home() {
               </div>
               <div
                 className={`${
-                  sectionOnScreen === "top" ? "min-w-0 " : " "
-                }group/classes mr-0 flex cursor-pointer place-items-center gap-0 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4 group-hover/nav:gap-4 sm:mx-4 md:w-fit`}
+                  sectionOnScreen === "top"
+                    ? "min-w-0 gap-4"
+                    : isMobile && isMenuOpen
+                    ? "gap-4"
+                    : "gap-0"
+                } group/classes mr-0 flex cursor-pointer place-items-center rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4 group-hover/nav:gap-4 sm:mx-4 md:w-fit`}
                 data-section={4}
                 onClick={scrollToSection}
               >
@@ -345,8 +357,12 @@ export default function Home() {
               </div>
               <div
                 className={`${
-                  sectionOnScreen === "top" ? "min-w-0 " : " "
-                }group/supplements mr-0 flex cursor-pointer place-items-center gap-0 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4 group-hover/nav:gap-4 sm:mx-4 md:w-fit`}
+                  sectionOnScreen === "top"
+                    ? "min-w-0 gap-4"
+                    : isMobile && isMenuOpen
+                    ? "gap-4"
+                    : "gap-0"
+                } group/supplements place-itemsgap-0 mr-0 flex cursor-pointer rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4 group-hover/nav:gap-4 sm:mx-4 md:w-fit`}
                 data-section={5}
                 onClick={scrollToSection}
               >
@@ -377,8 +393,12 @@ export default function Home() {
               </div>
               <div
                 className={`${
-                  sectionOnScreen === "top" ? "min-w-0 " : " "
-                }group/equipment mr-0 flex cursor-pointer place-items-center gap-0 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4 group-hover/nav:gap-4 sm:mx-4 md:w-fit`}
+                  sectionOnScreen === "top"
+                    ? "min-w-0 gap-4"
+                    : isMobile && isMenuOpen
+                    ? "gap-4"
+                    : "gap-0"
+                } group/equipment mr-0 flex cursor-pointer place-items-center rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4 group-hover/nav:gap-4 sm:mx-4 md:w-fit`}
                 data-section={6}
                 onClick={scrollToSection}
               >
@@ -409,8 +429,12 @@ export default function Home() {
               </div>
               <div
                 className={`${
-                  sectionOnScreen === "top" ? "min-w-0 " : " "
-                }group/equipment mr-0 flex cursor-pointer place-items-center gap-0 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4 group-hover/nav:gap-4 sm:mx-4 md:w-fit`}
+                  sectionOnScreen === "top"
+                    ? "min-w-0 gap-4"
+                    : isMobile && isMenuOpen
+                    ? "gap-4"
+                    : "gap-0"
+                } group/equipment mr-0 flex cursor-pointer place-items-center rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4 group-hover/nav:gap-4 sm:mx-4 md:w-fit`}
                 data-section={7}
                 onClick={scrollToSection}
               >
