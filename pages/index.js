@@ -250,7 +250,7 @@ export default function Home() {
               <div
                 className={`${
                   sectionOnScreen === "top" ? "min-w-0 " : ""
-                }group/training mr-0 flex cursor-pointer place-items-center gap-4 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4 sm:mx-4 md:w-fit`}
+                }group/training mr-0 flex cursor-pointer place-items-center gap-0 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4 group-hover/nav:gap-4 sm:mx-4 md:w-fit`}
                 data-section={2}
                 onClick={scrollToSection}
               >
@@ -282,7 +282,7 @@ export default function Home() {
               <div
                 className={`${
                   sectionOnScreen === "top" ? "min-w-0 " : " "
-                }group/profile mr-0 flex cursor-pointer place-items-center gap-4 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4 sm:mx-4 md:w-fit`}
+                }group/profile mr-0 flex cursor-pointer place-items-center gap-0 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4 group-hover/nav:gap-4 sm:mx-4 md:w-fit`}
                 data-section={3}
                 onClick={scrollToSection}
               >
@@ -314,7 +314,7 @@ export default function Home() {
               <div
                 className={`${
                   sectionOnScreen === "top" ? "min-w-0 " : " "
-                }group/classes mr-0 flex cursor-pointer place-items-center gap-4 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4 sm:mx-4 md:w-fit`}
+                }group/classes mr-0 flex cursor-pointer place-items-center gap-0 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4 group-hover/nav:gap-4 sm:mx-4 md:w-fit`}
                 data-section={4}
                 onClick={scrollToSection}
               >
@@ -346,7 +346,7 @@ export default function Home() {
               <div
                 className={`${
                   sectionOnScreen === "top" ? "min-w-0 " : " "
-                }group/supplements mr-0 flex cursor-pointer place-items-center gap-4 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4 sm:mx-4 md:w-fit`}
+                }group/supplements mr-0 flex cursor-pointer place-items-center gap-0 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4 group-hover/nav:gap-4 sm:mx-4 md:w-fit`}
                 data-section={5}
                 onClick={scrollToSection}
               >
@@ -378,7 +378,7 @@ export default function Home() {
               <div
                 className={`${
                   sectionOnScreen === "top" ? "min-w-0 " : " "
-                }group/equipment mr-0 flex cursor-pointer place-items-center gap-4 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4 sm:mx-4 md:w-fit`}
+                }group/equipment mr-0 flex cursor-pointer place-items-center gap-0 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4 group-hover/nav:gap-4 sm:mx-4 md:w-fit`}
                 data-section={6}
                 onClick={scrollToSection}
               >
@@ -410,7 +410,7 @@ export default function Home() {
               <div
                 className={`${
                   sectionOnScreen === "top" ? "min-w-0 " : " "
-                }group/equipment mr-0 flex cursor-pointer place-items-center gap-4 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4 sm:mx-4 md:w-fit`}
+                }group/equipment mr-0 flex cursor-pointer place-items-center gap-0 rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4 group-hover/nav:gap-4 sm:mx-4 md:w-fit`}
                 data-section={7}
                 onClick={scrollToSection}
               >
@@ -617,7 +617,7 @@ export default function Home() {
                           weekday: `long`,
                         })}
                       </span>
-                      <span className="text-lg">{` (${dates[0]?.date.toLocaleDateString(
+                      <span className="text-sm text-light sm:text-lg">{` (${dates[0]?.date.toLocaleDateString(
                         `en-us`,
                         {
                           month: `numeric`,
@@ -642,7 +642,7 @@ export default function Home() {
                           weekday: `long`,
                         })}
                       </span>
-                      <span className="text-lg">{` (${dates[1]?.date.toLocaleDateString(
+                      <span className="text-sm text-light sm:text-lg">{` (${dates[1]?.date.toLocaleDateString(
                         `en-us`,
                         {
                           month: `numeric`,
@@ -704,7 +704,7 @@ export default function Home() {
                 color2={colors.dark}
               />
             </div>
-            <div className="flex flex-wrap gap-10 sm:gap-20">
+            <div className="flex flex-wrap justify-center gap-10 sm:gap-20">
               <div className="flex min-w-[40%] max-w-full flex-grow flex-col gap-4 rounded-xl bg-white/10 p-8 backdrop-blur-md sm:gap-6 md:max-w-[60%]">
                 <div className="flex place-items-center justify-start gap-6">
                   <RoexLogo className="min-h-[40px] max-w-[40px] self-start pt-2 text-secondary-dark sm:max-w-[80px]" />
