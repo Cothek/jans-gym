@@ -274,7 +274,7 @@ export default function Home() {
                 <h3
                   className={`${
                     sectionOnScreen === "top"
-                      ? "mr-4 max-w-full text-[calc(1rem+1vh)] opacity-100"
+                      ? "mr-4 max-w-full text-2xl opacity-100"
                       : isMobile
                       ? "mr-4 text-2xl opacity-100 sm:text-3xl"
                       : "mr-0 max-w-0 text-2xl opacity-0 sm:text-3xl"
@@ -310,7 +310,7 @@ export default function Home() {
                 <h3
                   className={`${
                     sectionOnScreen === "top"
-                      ? "mr-4 max-w-full text-[calc(1rem+1vh)] opacity-100"
+                      ? "mr-4 max-w-full text-2xl opacity-100"
                       : isMobile
                       ? "mr-4 text-2xl opacity-100 sm:text-3xl"
                       : "mr-0 max-w-0 text-2xl opacity-0 sm:text-3xl"
@@ -346,7 +346,7 @@ export default function Home() {
                 <h3
                   className={`${
                     sectionOnScreen === "top"
-                      ? "mr-4 max-w-full text-[calc(1rem+1vh)] opacity-100"
+                      ? "mr-4 max-w-full text-2xl opacity-100"
                       : isMobile
                       ? "mr-4 text-2xl opacity-100 sm:text-3xl"
                       : "mr-0 max-w-0 text-2xl opacity-0 sm:text-3xl"
@@ -362,7 +362,7 @@ export default function Home() {
                     : isMobile && isMenuOpen
                     ? "gap-4"
                     : "gap-0"
-                } group/supplements place-itemsgap-0 mr-0 flex cursor-pointer rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4 group-hover/nav:gap-4 sm:mx-4 md:w-fit`}
+                } group/supplements mr-0 flex cursor-pointer place-items-center rounded-lg bg-transparent transition-all hover:bg-light/50 hover:text-white hover:drop-shadow-lg group-hover/nav:mr-4 group-hover/nav:gap-4 sm:mx-4 md:w-fit`}
                 data-section={5}
                 onClick={scrollToSection}
               >
@@ -382,7 +382,7 @@ export default function Home() {
                 <h3
                   className={`${
                     sectionOnScreen === "top"
-                      ? "mr-4 max-w-full text-[calc(1rem+1vh)] opacity-100"
+                      ? "mr-4 max-w-full text-2xl opacity-100"
                       : isMobile
                       ? "mr-4 text-2xl opacity-100 sm:text-3xl"
                       : "mr-0 max-w-0 text-2xl opacity-0 sm:text-3xl"
@@ -418,7 +418,7 @@ export default function Home() {
                 <h3
                   className={`${
                     sectionOnScreen === "top"
-                      ? "mr-4 max-w-full text-[calc(1rem+1vh)] opacity-100"
+                      ? "mr-4 max-w-full text-2xl opacity-100"
                       : isMobile
                       ? "mr-4 text-2xl opacity-100 sm:text-3xl"
                       : "mr-0 max-w-0 text-2xl opacity-0 sm:text-3xl"
@@ -454,7 +454,7 @@ export default function Home() {
                 <h3
                   className={`${
                     sectionOnScreen === "top"
-                      ? "mr-4 max-w-full text-[calc(1rem+1vh)] opacity-100"
+                      ? "mr-4 max-w-full text-2xl opacity-100"
                       : isMobile
                       ? "mr-4 text-2xl opacity-100 sm:text-3xl"
                       : "mr-0 max-w-0 text-2xl opacity-0 sm:text-3xl"
