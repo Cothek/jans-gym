@@ -174,7 +174,7 @@ export default function Home() {
                   colorDate={colors.dark}
                   colorEST={colors.dark}
                   colorJ={colors.primary}
-                  colorG={colors.light}
+                  colorG={colors.primary}
                 />
               </div>
               <JansGymTextLogo
@@ -499,7 +499,7 @@ export default function Home() {
         <section
           id={sections[2].name}
           ref={sections[2].ref}
-          className="relative z-10 grid place-items-center overflow-x-clip bg-gradient-to-r from-secondary to-secondary-dark py-[10%] text-white"
+          className="relative z-10 grid place-items-center overflow-x-clip bg-gradient-to-r from-primary to-primary-dark py-[10%] text-white"
         >
           <div className="relative z-10 grid w-10/12 gap-20 xs:w-4/5 sm:w-[min(70%,_1100px)]">
             <div className="grid w-fit place-items-center gap-1 xs:gap-2 md:gap-4 lg:gap-6">
@@ -520,7 +520,7 @@ export default function Home() {
               strengthen your body and mind.
             </p>
             <div className="grid place-items-center gap-10 lg:grid-flow-col">
-              <div className="flex h-fit w-full flex-col gap-3 self-start rounded-2xl bg-secondary p-8 shadow-lg transition-transform hover:-rotate-6 sm:p-10 lg:w-auto">
+              <div className="flex h-fit w-full flex-col gap-3 self-start rounded-2xl bg-gradient-to-br from-light/50 to-light-dark/50 p-8 shadow-lg transition-transform hover:scale-110 sm:p-10 lg:w-auto">
                 <h2 className="gap-4 self-center font-secondary text-2xl text-dark md:mb-3 md:text-4xl">
                   Sessions
                 </h2>
@@ -536,7 +536,7 @@ export default function Home() {
                   </li>
                 </ul>
               </div>
-              <div className="flex w-full flex-col gap-3 rounded-2xl bg-secondary p-8 shadow-lg transition-transform hover:rotate-6 sm:p-10 lg:w-auto">
+              <div className="flex w-full flex-col gap-3 rounded-2xl bg-gradient-to-br from-light/50 to-light-dark/50 p-8 shadow-lg transition-transform hover:scale-110 sm:p-10 lg:w-auto">
                 <h2 className="gap-4 self-center font-secondary text-2xl text-dark md:mb-3 md:text-4xl">
                   Certifications
                 </h2>
@@ -562,7 +562,7 @@ export default function Home() {
           className="relative grid place-items-center py-20 sm:py-32"
         >
           <div className="grid w-4/5 gap-20 xs:w-10/12 sm:w-[min(70%,_1100px)]">
-            <div className="relative z-10 grid place-items-center gap-1 justify-self-end xs:gap-2 md:gap-4 lg:gap-6">
+            <div className="relative z-10 grid place-items-center gap-1 justify-self-start xs:gap-2 md:gap-4 lg:gap-6">
               <h1 className="font-secondary text-[1.95rem] text-dark xs:text-4xl sm:text-6xl lg:text-7xl xl:text-8xl">
                 {capitalizeFirstLetter(sections[3].name)}
               </h1>
@@ -715,7 +715,7 @@ export default function Home() {
         <section
           id={sections[5].name}
           ref={sections[5].ref}
-          className="relative grid place-items-center bg-gradient-to-b from-white via-primary to-dark py-32 "
+          className="relative grid place-items-center bg-gradient-to-b from-white to-primary py-32 "
         >
           <div className="relative z-20 grid w-4/5 gap-10 xs:w-10/12 sm:w-[min(70%,_1100px)] sm:gap-20">
             <div className="relative z-10 grid place-items-center gap-1 justify-self-start xs:gap-2 md:gap-4 lg:gap-6">
@@ -729,59 +729,45 @@ export default function Home() {
               />
             </div>
             <div className="flex flex-wrap justify-center gap-10 sm:gap-20">
-              <div className="flex min-w-[40%] max-w-full flex-grow flex-col gap-4 rounded-xl bg-white/10 p-8 backdrop-blur-md sm:gap-6 md:max-w-[60%]">
-                <div className="flex place-items-center justify-start gap-6">
-                  <RoexLogo className="min-h-[40px] max-w-[40px] self-start pt-2 text-secondary-dark sm:max-w-[80px]" />
+              <div className="flex max-w-full flex-grow flex-col place-content-center gap-4 rounded-xl bg-white/10 p-8 backdrop-blur-md sm:gap-6 md:max-w-[60%]">
+                <div className="flex items-center justify-center gap-6">
+                  <RoexLogo className="max-h-10 max-w-[40px] self-start text-white sm:max-w-[80px]" />
 
-                  <h2 className="font-secondary text-xl text-secondary-dark xs:text-3xl sm:text-4xl">
+                  <h2 className="font-primary text-2xl font-semibold text-white underline underline-offset-8 xs:text-3xl sm:text-5xl">
                     Roex
                   </h2>
                 </div>
-                <ul className="list-outide col-span-2 ml-4 grid list-disc gap-3">
-                  <li>Supplement 1</li>
-                  <li>Supplement 2</li>
-                  <li>Supplement 3</li>
-                </ul>
               </div>
-              <div className="flex min-w-[40%] max-w-full flex-grow flex-col gap-4 rounded-xl bg-white/10 p-8 backdrop-blur-md sm:gap-6 md:max-w-[60%]">
-                <div className="flex place-items-center justify-start gap-6">
-                  <ThornLogo className="min-h-[40px] max-w-[40px] self-start pt-2 text-secondary-dark sm:max-w-[80px]" />
+              <div className="flex max-w-full flex-grow flex-col place-content-center gap-4 rounded-xl bg-white/10 p-8 backdrop-blur-md sm:gap-6 md:max-w-[60%]">
+                <div className="flex items-center justify-center gap-6">
+                  <ThornLogo className="max-h-10 max-w-[40px] self-start text-white sm:max-w-[80px]" />
 
-                  <h2 className="font-secondary text-xl text-secondary-dark xs:text-3xl sm:text-4xl">
+                  <h2 className="font-primary text-2xl font-semibold text-white underline underline-offset-8 xs:text-3xl sm:text-5xl">
                     Thorn
                   </h2>
                 </div>
-                <ul className="list-outide col-span-2 ml-4 grid list-disc gap-3">
-                  <li>Supplement 1</li>
-                  <li>Supplement 2</li>
-                  <li>Supplement 3</li>
-                </ul>
               </div>
-              <div className="flex min-w-[40%] max-w-full flex-grow flex-col gap-4 rounded-xl bg-white/10 p-8 backdrop-blur-md sm:gap-6 md:max-w-[60%]">
-                <div className="flex place-items-center justify-start gap-6">
-                  <FullscriptLogo className="min-h-[40px] max-w-[40px] self-start pt-2 text-secondary-dark sm:max-w-[80px]" />
+              <div className="flex max-w-full flex-grow flex-col place-content-center gap-4 rounded-xl bg-white/10 p-8 backdrop-blur-md sm:gap-6 md:max-w-[60%]">
+                <div className="flex items-center justify-center gap-6">
+                  <FullscriptLogo className="max-h-10 max-w-[40px] self-start text-white sm:max-w-[80px]" />
 
-                  <h2 className="font-secondary text-xl text-secondary-dark xs:text-3xl sm:text-4xl">
+                  <h2 className="font-primary text-2xl font-semibold text-white underline underline-offset-8 xs:text-3xl sm:text-5xl">
                     Fullscript
                   </h2>
                 </div>
-                <ul className="list-outide col-span-2 ml-4 grid list-disc gap-3">
-                  <li>Supplement 1</li>
-                  <li>Supplement 2</li>
-                  <li>Supplement 3</li>
-                </ul>
               </div>
             </div>
           </div>
           <div className="absolute top-0 z-0 h-full w-full bg-supplements-pattern bg-[length:120px] bg-repeat opacity-10 mix-blend-overlay">
             <img className="h-20 w-20" src="./supplements.svg" alt="" />
           </div>
-          <div className="absolute bottom-0 z-10 h-1/4 w-full translate-y-1 bg-gradient-to-t from-dark to-transparent"></div>
+          <div className="absolute bottom-0 z-10 h-1/3 w-full translate-y-16 bg-gradient-to-t from-transparent via-primary to-transparent"></div>
         </section>
+        {/* Equipment */}
         <section
           id={sections[6].name}
           ref={sections[6].ref}
-          className="relative z-0 grid place-items-center bg-dark py-32"
+          className="relative z-0 grid place-items-center bg-gradient-to-b from-primary to-dark py-32"
         >
           <div className="grid w-4/5 gap-20 xs:w-10/12 sm:w-[min(70%,_1100px)]">
             <div className="relative z-10 grid place-items-center gap-2 justify-self-start md:gap-4 lg:gap-6">
@@ -797,22 +783,64 @@ export default function Home() {
             </div>
           </div>
         </section>
+        {/* Contact */}
         <section
           id={sections[7].name}
           ref={sections[7].ref}
           className="relative z-0 grid place-items-center bg-dark py-32"
         >
           <div className="grid w-4/5 gap-20 xs:w-10/12 sm:w-[min(70%,_1100px)]">
-            <div className="relative z-10 grid place-items-center gap-2 justify-self-end md:gap-4 lg:gap-6">
+            <div className="relative z-10 grid place-items-center gap-2 justify-self-start md:gap-4 lg:gap-6">
               <h1 className="font-secondary text-[1.95rem] text-primary xs:text-4xl sm:text-6xl lg:text-7xl xl:text-8xl">
                 {capitalizeFirstLetter(sections[7].name)}
               </h1>
-              <BarLarge
+              <Bar
                 gradientId={`${sections[7].name}-bar`}
                 className="h-6 md:h-7 lg:h-9 xl:h-11"
                 color1={colors.primary}
                 color2={colors.primary}
               />
+            </div>
+            <div className="-mx-[8%] grid text-2xl text-white xs:-mx-[5%] md:text-4xl">
+              <div className="grid gap-4 overflow-clip rounded-[60px] border-[15px] border-secondary bg-white/30 p-4 drop-shadow-xl transition-colors hover:bg-white/40 xs:rounded-[80px] xs:p-6 md:gap-8 md:border-[30px] md:p-14">
+                <div className="-mt-10 mb-6 w-[40%] place-self-center rounded-b-[30px] border-[30px] border-secondary xs:-mt-14 md:mb-0 md:-translate-y-4"></div>
+                <h4 className="leading-6">
+                  Jan's email:{" "}
+                  <a
+                    className="break-all text-lg underline transition-colors hover:text-secondary xs:break-normal md:text-2xl"
+                    href="mailto:jansgymonline@gmail.com"
+                  >
+                    jansgymonline@gmail.com
+                  </a>
+                </h4>
+                <h4 className="leading-4">
+                  Jan's cell:{" "}
+                  <a
+                    className="text-lg underline transition-colors hover:text-secondary md:text-2xl"
+                    href="tel:6029893166"
+                  >
+                    (602)989-3166
+                  </a>
+                </h4>
+                <div className="h-[10px] w-full rounded-full bg-white/30"></div>
+                <h4>Send Jan a message:</h4>
+                <input
+                  className="w-full rounded-[30px] bg-white/30 p-6 text-white outline-none transition-colors placeholder:text-dark/50 hover:bg-secondary/30 focus:bg-secondary"
+                  type="email"
+                  placeholder="Your email"
+                />
+                <textarea
+                  className="h-full w-full rounded-[30px] bg-white/30 p-6 text-white outline-none transition-colors placeholder:text-dark/50 hover:bg-secondary/30 focus:bg-secondary"
+                  placeholder="Your message"
+                  name=""
+                  id=""
+                  cols="10"
+                  rows="10"
+                ></textarea>
+                <button className="grid max-w-full place-items-center rounded-[30px] bg-white/30 p-4 pt-6 transition-colors hover:bg-secondary focus:bg-secondary md:max-w-[200px]">
+                  Send
+                </button>
+              </div>
             </div>
           </div>
         </section>

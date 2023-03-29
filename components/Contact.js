@@ -1,4 +1,9 @@
-function Contact({ className = "", fill = "#FFFFFF", stroke = "#000000" }) {
+function Contact({
+  className = "",
+  fill = "#FFFFFF",
+  stroke = "#000000",
+  strokeWidth = "3",
+}) {
   return (
     <svg
       className={className}
@@ -13,7 +18,7 @@ function Contact({ className = "", fill = "#FFFFFF", stroke = "#000000" }) {
 		V10.4C14.6,8.1,16.4,6.2,18.8,6.2z"
         fill={fill}
         stroke={stroke}
-        strokeWidth="3"
+        strokeWidth={strokeWidth}
         strokeLinecap="round"
       />
     </svg>
