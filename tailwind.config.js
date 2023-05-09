@@ -25,6 +25,7 @@ module.exports = {
       },
       backgroundImage: {
         "supplements-pattern": "url('/supplements-pattern.svg')",
+        "hero-image": "url('/main-pic.jpg')",
       },
       fontFamily: {
         primary: ["Josefin Sans", "sans-serif"],

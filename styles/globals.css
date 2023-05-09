@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.parallax-container {
+  height: 100vh;
+  overflow-x: hidden;
+
+  perspective: 0.5px;
+}
+
+.parallax-preserve {
+  transform-style: preserve-3d;
+}
+
+.parallax-layer-0 {
+  transform: translateZ(0px);
+}
+
+.parallax-layer-1 {
+  transform: translateZ(-0.5px) scale(1.5);
+}

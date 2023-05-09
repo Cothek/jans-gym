@@ -2,15 +2,12 @@ function Bar({
   className = "",
   color1 = "#000000",
   color2 = "#ffffff",
-  gradientId = "a",
+  gradientId = "bar",
 }) {
   return (
     <svg
       className={className}
-      version="1.1"
-      id="Layer_1"
       xmlns="http://www.w3.org/2000/svg"
-      xmlns-xlink="http://www.w3.org/1999/xlink"
       x="0px"
       y="0px"
       viewBox="0 0 1920 202"

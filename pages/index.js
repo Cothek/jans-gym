@@ -16,6 +16,7 @@ import JansGymTextLogo from "../components/JansGymTextLogo";
 import BarLarge from "../components/BarLarge";
 import Contact from "../components/Contact";
 import NoClass from "../components/NoClass";
+import BorderBar from "../components/BorderBar";
 
 const colors = theme.theme.extend.colors;
 const sections = [
@@ -105,7 +106,6 @@ export default function Home() {
   }
 
   async function getDates() {
-    console.log(`FETCHING`);
     const response = await fetch(`/api/calendar`, {
       method: `GET`,
       mode: `cors`,
@@ -132,7 +132,8 @@ export default function Home() {
       <Head>
         <title>Jan's Gym</title>
       </Head>
-      <div className="Content">
+      {/* Content */}
+      <div className="">
         <nav
           className={`${
             sectionOnScreen === "top" ? "" : isMobile ? "" : "group/nav "
@@ -142,7 +143,7 @@ export default function Home() {
               : sectionOnScreen === "top"
               ? "w-full xs:w-fit "
               : "w-fit "
-          }fixed z-50 h-full p-3 transition-all duration-300 md:max-w-[50%] lg:p-6`}
+          }fixed z-50 p-3 transition-all duration-300 md:max-w-[50%] lg:p-6`}
         >
           <div
             className={`${
@@ -228,18 +229,6 @@ export default function Home() {
                 ></div>
               </div>
             </div>
-            <h2
-              className={`${
-                sectionOnScreen === "top"
-                  ? "mx-4 mb-[1vh] mt-[calc(2.5vh)] max-h-full rounded-xl bg-light/50 p-[3.5vh] py-[2vh] text-[4.5vh] leading-[6.5vh] text-white opacity-100"
-                  : "m-0 max-h-0 overflow-hidden p-0 text-[0px] opacity-0"
-              } ${
-                isMobile ? "hidden " : "leading-[3vw] "
-              }transition-all duration-300`}
-            >
-              Providing top quality training to help you achieve the health
-              goals you want!
-            </h2>
             <div
               className={`${
                 isMobile && !isMenuOpen
@@ -465,385 +454,404 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <h2
-            className={`absolute bottom-0 left-0 w-[calc(100vw-2rem)] backdrop-blur-sm ${
-              sectionOnScreen === "top"
-                ? "mx-4 mb-4 max-h-full rounded-xl bg-light/50 p-6 py-5 text-2xl text-white opacity-100 sm:text-4xl sm:leading-[3rem]"
-                : "m-0 max-h-0 overflow-hidden p-0 text-[0px] opacity-0"
-            } ${isMobile ? "" : "hidden "}transition-all duration-300`}
-          >
-            Providing top quality training to help you achieve the health goals
-            you want!
-          </h2>
         </nav>
-        <div
-          id={sections[0].name}
-          ref={sections[0].ref}
-          className="absolute top-0 left-0 right-0 h-2/3 cursor-none"
-        ></div>
-        <section
-          id={sections[1].name}
-          ref={sections[1].ref}
-          className="relative z-0 h-screen sm:pl-[30%] lg:pl-[300px]"
-        >
-          <div className="relative overflow-x-hidden lg:pl-[20%]">
-            <img
-              className="h-[140vh] w-[120%] object-cover"
-              src="./main-pic.jpg"
-              alt=""
+        <div className="parallax-container parallax-preserve">
+          <div
+            id={sections[0].name}
+            ref={sections[0].ref}
+            className="absolute top-0 left-0 right-0 h-2/3 cursor-none"
+          ></div>
+          {/* Main Picture */}
+          <section
+            id={sections[1].name}
+            ref={sections[1].ref}
+            className="parallax-layer-1 relative z-0 h-screen"
+          >
+            <div className="relative overflow-x-hidden sm:pl-[30%] lg:pl-[20%+300px]">
+              <img
+                className="h-[105vh] w-[120%] object-cover"
+                src="./main-pic.jpg"
+                alt=""
+              />
+              <div className="absolute top-0 h-full w-1/2 -translate-x-1 bg-gradient-to-r from-white to-transparent"></div>
+            </div>
+            <div className="absolute bottom-0 grid w-full place-content-center p-4">
+              <h2
+                className={`max-h-full rounded-xl bg-white/40 p-[3.5vh] py-[2vh] text-2xl leading-8 text-dark opacity-100 backdrop-blur-sm transition-all duration-300 sm:text-3xl`}
+              >
+                Providing top quality training to help you achieve the health
+                goals you want!
+              </h2>
+            </div>
+          </section>
+          {/* Training */}
+          <section
+            id={sections[2].name}
+            ref={sections[2].ref}
+            className="parallax-layer-0 relative z-10 grid place-items-center overflow-x-clip text-white"
+          >
+            <BorderBar
+              className="w-full translate-y-1"
+              fillColor1={colors.primary}
+              fillColor2={colors["primary-dark"]}
+              gradientId="border-top"
             />
-            <div className="absolute top-0 h-full w-1/2 -translate-x-1 bg-gradient-to-r from-white to-transparent"></div>
-          </div>
-        </section>
-        {/* Training */}
-        <section
-          id={sections[2].name}
-          ref={sections[2].ref}
-          className="relative z-10 grid place-items-center overflow-x-clip bg-gradient-to-r from-primary to-primary-dark py-[10%] text-white"
-        >
-          <div className="relative z-10 grid w-10/12 gap-20 xs:w-4/5 sm:w-[min(70%,_1100px)]">
-            <div className="grid w-fit place-items-center gap-1 xs:gap-2 md:gap-4 lg:gap-6">
-              <h1 className="font-secondary text-[1.95rem] text-dark xs:text-4xl sm:text-6xl lg:text-7xl xl:text-8xl">
-                {capitalizeFirstLetter(sections[2].name)}
-              </h1>
-              <Bar
-                className="h-5 md:h-7 lg:h-9 xl:h-11"
-                color1={colors.dark}
-                color2={colors.dark}
-              />
-            </div>
-            <p className="text-lg md:text-2xl">
-              <span className="font-secondary text-dark">Jan</span> has been a
-              personal trainer for over 35+ years and excels in improving the
-              livelihood and and fitness of her many clients. Drawing on her
-              experience and backed by numerous certifications she can help you
-              strengthen your body and mind.
-            </p>
-            <div className="grid place-items-center gap-10 lg:grid-flow-col">
-              <div className="flex h-fit w-full flex-col gap-3 self-start rounded-2xl bg-gradient-to-br from-light/50 to-light-dark/50 p-8 shadow-lg transition-transform hover:scale-110 sm:p-10 lg:w-auto">
-                <h2 className="gap-4 self-center font-secondary text-2xl text-dark md:mb-3 md:text-4xl">
-                  Sessions
-                </h2>
-                <ul className="ml-4 grid list-outside list-disc gap-3">
-                  <li className="text-lg md:text-xl">
-                    Pilates Reformer ($60 / Private Session)
-                  </li>
-                  <li className="text-lg md:text-xl">
-                    Personal Training ($60 / Private Session)
-                  </li>
-                  <li className="text-lg md:text-xl">
-                    Zoom Class ($5 / Class)
-                  </li>
-                </ul>
-              </div>
-              <div className="flex w-full flex-col gap-3 rounded-2xl bg-gradient-to-br from-light/50 to-light-dark/50 p-8 shadow-lg transition-transform hover:scale-110 sm:p-10 lg:w-auto">
-                <h2 className="gap-4 self-center font-secondary text-2xl text-dark md:mb-3 md:text-4xl">
-                  Certifications
-                </h2>
-                <ul className="ml-4 grid list-outside list-disc gap-3">
-                  <li className="text-lg md:text-xl">NASM</li>
-                  <li className="text-lg md:text-xl">Stott Pilates</li>
-                  <li className="text-lg md:text-xl">
-                    Johnny G spin certified
-                  </li>
-                  <li className="text-lg md:text-xl">
-                    Institute of Integrated Nutrition (IIN) certified
-                  </li>
-                  <li className="text-lg md:text-xl">CPR/AED certified</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-        {/* Profile */}
-        <section
-          id={sections[3].name}
-          ref={sections[3].ref}
-          className="relative grid place-items-center py-20 sm:py-32"
-        >
-          <div className="grid w-4/5 gap-20 xs:w-10/12 sm:w-[min(70%,_1100px)]">
-            <div className="relative z-10 grid place-items-center gap-1 justify-self-start xs:gap-2 md:gap-4 lg:gap-6">
-              <h1 className="font-secondary text-[1.95rem] text-dark xs:text-4xl sm:text-6xl lg:text-7xl xl:text-8xl">
-                {capitalizeFirstLetter(sections[3].name)}
-              </h1>
-              <Bar
-                className="h-5 md:h-7 lg:h-9 xl:h-11"
-                color1={colors.dark}
-                color2={colors.dark}
-              />
-            </div>
-            <div className="relative z-10">
-              <div className="rounded-2xl bg-white/20 p-4 text-lg leading-6 backdrop-blur-md sm:p-10 md:text-2xl md:leading-8">
-                <p>
-                  Please, allow me to take a moment to introduce myself, and
-                  explain a personal service I am excited to offer you.
-                  <br />
-                  <br />
-                  My name is Jan Stevenson. I have been involved and practicing
-                  personal training for over 40 years. I have worked with a
-                  volume of clients through personal individual training, and
-                  group training in many facilities that you may recognize
-                  (Tucson Athletic Club, LaMancha Athletic Club, LaCamarilla
-                  Athletic Club, Moon Valley Country Club, ?????). I have been
-                  an active member of IDEA for over ?? years and have recently
-                  earned the “IDEA Inspiration Award”.
-                  <br />
-                  <br />
-                  It is obvious from the many years I have been training that I
-                  am actively involved not due to financial necessity, but as a
-                  result of passion. We all want better health and fitness, and
-                  we strive our entire lives for that result. I love to assist
-                  others in this quest, and you will find my enthusiasm to be
-                  encouraging.
-                  <br />
-                  <br />I would love to prove it to you! Give me a call at #####
-                  and we can begin the process today.
+            <div className="grid place-items-center bg-gradient-to-r from-primary to-primary-dark py-[3%]">
+              <div className="relative z-10 grid w-10/12 gap-20 xs:w-4/5 sm:w-[min(70%,_1100px)]">
+                <div className="grid w-fit place-items-center gap-1 xs:gap-2 md:gap-4 lg:gap-6">
+                  <h1 className="font-secondary text-[1.95rem] text-dark xs:text-4xl sm:text-6xl lg:text-7xl xl:text-8xl">
+                    {capitalizeFirstLetter(sections[2].name)}
+                  </h1>
+                  <Bar
+                    className="h-5 md:h-7 lg:h-9 xl:h-11"
+                    color1={colors.dark}
+                    color2={colors.dark}
+                  />
+                </div>
+                <p className="text-lg md:text-2xl">
+                  <span className="font-secondary text-dark">Jan</span> has been
+                  a personal trainer for over 35+ years and excels in improving
+                  the livelihood and and fitness of her many clients. Drawing on
+                  her experience and backed by numerous certifications she can
+                  help you strengthen your body and mind.
                 </p>
+                <div className="grid place-items-center gap-10 lg:grid-flow-col">
+                  <div className="flex h-fit w-full flex-col gap-3 self-start rounded-2xl bg-gradient-to-br from-light/50 to-light-dark/50 p-8 shadow-lg transition-transform hover:scale-110 sm:p-10 lg:w-auto">
+                    <h2 className="gap-4 self-center font-secondary text-2xl text-dark md:mb-3 md:text-4xl">
+                      Sessions
+                    </h2>
+                    <ul className="ml-4 grid list-outside list-disc gap-3">
+                      <li className="text-lg md:text-xl">
+                        Pilates Reformer ($60 / Private Session)
+                      </li>
+                      <li className="text-lg md:text-xl">
+                        Personal Training ($60 / Private Session)
+                      </li>
+                      <li className="text-lg md:text-xl">
+                        Zoom Class ($5 / Class)
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="flex w-full flex-col gap-3 rounded-2xl bg-gradient-to-br from-light/50 to-light-dark/50 p-8 shadow-lg transition-transform hover:scale-110 sm:p-10 lg:w-auto">
+                    <h2 className="gap-4 self-center font-secondary text-2xl text-dark md:mb-3 md:text-4xl">
+                      Certifications
+                    </h2>
+                    <ul className="ml-4 grid list-outside list-disc gap-3">
+                      <li className="text-lg md:text-xl">NASM</li>
+                      <li className="text-lg md:text-xl">Stott Pilates</li>
+                      <li className="text-lg md:text-xl">
+                        Johnny G spin certified
+                      </li>
+                      <li className="text-lg md:text-xl">
+                        Institute of Integrated Nutrition (IIN) certified
+                      </li>
+                      <li className="text-lg md:text-xl">CPR/AED certified</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="absolute z-0 grid h-[120%] place-self-center overflow-hidden object-cover">
-            <div className="absolute bottom-0 z-10 col-start-1 row-start-1 h-full w-3/4 self-end bg-gradient-to-b from-transparent to-white"></div>
-            <div className="z-10 col-start-1 row-start-1 h-full w-3/4 translate-x-1 bg-gradient-to-r from-transparent to-white"></div>
-            <img
-              className="z-0 col-start-1 row-start-1 h-full w-3/4 -scale-x-100 self-end object-cover"
-              src="./profile-pic.jpg"
-              alt=""
+            <BorderBar
+              className="w-full -translate-y-1 -scale-y-100"
+              fillColor1={colors.primary}
+              fillColor2={colors["primary-dark"]}
+              gradientId="border-top"
             />
-          </div>
-        </section>
-        {/* Classes */}
-        <section
-          id={sections[4].name}
-          ref={sections[4].ref}
-          className="relative z-10 grid place-items-center pt-32 pb-12 sm:pb-32"
-        >
-          <div className="relative grid w-9/12 gap-[30px] p-1 xs:p-6 sm:w-[min(60%,_1100px)]">
-            <div className="relative z-10 grid w-fit place-items-center gap-1 justify-self-center pb-6 xs:gap-2 sm:pb-10 md:gap-4 lg:gap-6">
-              <h1 className="font-secondary text-[1.95rem] text-white xs:text-4xl sm:text-6xl lg:text-7xl xl:text-8xl">
-                {capitalizeFirstLetter(sections[4].name)}
-              </h1>
-              <Bar
-                className="h-5 md:h-7 lg:h-9 xl:h-11"
-                gradientId={sections[4].name + "Bar"}
-                color1={colors.white}
-                color2={colors.white}
-              />
-            </div>
-            <div className="relative grid pt-12 sm:pt-16">
-              <div className="absolute z-10 w-[130%] -translate-y-full justify-self-center border-b-[15px] border-dark xs:w-[calc(100%+100px)] sm:w-[calc(100%+150px)] sm:border-b-[30px]"></div>
-              <div className="relative z-10 flex flex-wrap gap-6">
-                {dates[0] ? (
-                  <div className="flex flex-grow flex-col place-items-center gap-1 rounded-2xl bg-white p-4 sm:gap-3 sm:p-8">
-                    <h2 className="text-2xl font-bold tracking-wider text-primary sm:text-4xl">
-                      <span className="underline">
-                        {dates[0]?.date.toLocaleDateString(`en-us`, {
-                          weekday: `long`,
-                        })}
-                      </span>
-                      <span className="text-sm text-light sm:text-lg">{` (${dates[0]?.date.toLocaleDateString(
-                        `en-us`,
-                        {
-                          month: `numeric`,
-                          day: `numeric`,
-                        }
-                      )})`}</span>
-                    </h2>
-                    <p className="text-xl sm:text-2xl">{`${dates[0].date.toLocaleTimeString(
-                      "en-US",
-                      { timeStyle: `short` }
-                    )} MT`}</p>
-                    <p className="text-xl sm:text-2xl"> Zoom Link:</p>
-                  </div>
-                ) : (
-                  <NoClass />
-                )}
-                {dates[0] ? (
-                  <div className="flex flex-grow flex-col place-items-center gap-1 rounded-2xl bg-white p-4 sm:gap-3 sm:p-8">
-                    <h2 className="text-2xl font-bold tracking-wider text-primary sm:text-4xl">
-                      <span className="underline">
-                        {dates[1]?.date.toLocaleDateString(`en-us`, {
-                          weekday: `long`,
-                        })}
-                      </span>
-                      <span className="text-sm text-light sm:text-lg">{` (${dates[1]?.date.toLocaleDateString(
-                        `en-us`,
-                        {
-                          month: `numeric`,
-                          day: `numeric`,
-                        }
-                      )})`}</span>
-                    </h2>
-                    <p className="text-xl sm:text-2xl">{`${dates[1].date.toLocaleTimeString(
-                      "en-US",
-                      { timeStyle: `short` }
-                    )} MT`}</p>
-                    <p className="text-xl sm:text-2xl"> Zoom Link:</p>
-                  </div>
-                ) : (
-                  <NoClass />
-                )}
-                <div className="flex flex-grow flex-col justify-center gap-1 sm:gap-3">
-                  <li className="text-xl sm:text-2xl"> $5 per class</li>
-                  <li className="text-xl sm:text-2xl">Pay through Zelle</li>
-                  <li className="break-all text-xl transition-colors duration-300 hover:text-secondary-dark sm:text-2xl">
-                    <a href="mailto:Jansgymonline@gmail.com">
-                      Jansgymonline@gmail.com
-                    </a>
-                  </li>
-                </div>
-              </div>
-            </div>
-            <div className="absolute -z-0 grid h-[calc(100%+80px)] w-[calc(100%+80px)] grid-cols-5 self-center justify-self-center rounded-[100px] bg-primary shadow-xl sm:h-[calc(100%+150px)] sm:w-[calc(100%+150px)]">
-              <div className="relative rounded-l-[100px] border-y-[15px] border-l-[15px] border-dark bg-transparent sm:border-y-[30px] sm:border-l-[30px]"></div>
-              <div className="relative grid border-b-[15px] border-dark bg-transparent sm:border-b-[30px]">
-                <div className="absolute w-[30px] -translate-x-1/2 rounded-full border-t-[15px] border-dark sm:border-t-[30px]"></div>
-                <div className="absolute h-[80px] -translate-y-1/2 justify-self-center rounded-full border-l-[15px] border-dark sm:h-[120px] sm:border-l-[30px]"></div>
-                <div className="absolute right-0 w-[30px] translate-x-1/2 rounded-full border-t-[15px] border-dark sm:border-t-[30px]"></div>
-              </div>
-              <div className="relative border-y-[15px] border-dark bg-transparent sm:border-y-[30px]"></div>
-              <div className="relative grid border-b-[15px] border-dark bg-transparent sm:border-b-[30px]">
-                <div className="absolute w-[30px] -translate-x-1/2 rounded-full border-t-[15px] border-dark sm:border-t-[30px]"></div>
-                <div className="absolute h-[80px] -translate-y-1/2 justify-self-center rounded-full border-l-[15px] border-dark sm:h-[120px] sm:border-l-[30px]"></div>
-                <div className="absolute right-0 w-[30px] translate-x-1/2 rounded-full border-t-[15px] border-dark sm:border-t-[30px]"></div>
-              </div>
-              <div className="relative rounded-r-[100px] border-y-[15px] border-r-[15px] border-dark bg-transparent sm:border-y-[30px] sm:border-r-[30px]"></div>
-            </div>
-          </div>
-        </section>
-        {/* Supplements */}
-        <section
-          id={sections[5].name}
-          ref={sections[5].ref}
-          className="relative grid place-items-center bg-gradient-to-b from-white to-primary py-32 "
-        >
-          <div className="relative z-20 grid w-4/5 gap-10 xs:w-10/12 sm:w-[min(70%,_1100px)] sm:gap-20">
-            <div className="relative z-10 grid place-items-center gap-1 justify-self-start xs:gap-2 md:gap-4 lg:gap-6">
-              <h1 className="font-secondary text-[1.95rem] text-dark xs:text-4xl sm:text-6xl lg:text-7xl xl:text-8xl">
-                {capitalizeFirstLetter(sections[5].name)}
-              </h1>
-              <BarLarge
-                className="h-6 md:h-7 lg:h-9 xl:h-11"
-                color1={colors.dark}
-                color2={colors.dark}
-              />
-            </div>
-            <div className="flex flex-wrap justify-center gap-10 sm:gap-20">
-              <div className="flex max-w-full flex-grow flex-col place-content-center gap-4 rounded-xl bg-white/10 p-8 backdrop-blur-md sm:gap-6 md:max-w-[60%]">
-                <div className="flex items-center justify-center gap-6">
-                  <RoexLogo className="max-h-10 max-w-[40px] self-start text-white sm:max-w-[80px]" />
-
-                  <h2 className="font-primary text-2xl font-semibold text-white underline underline-offset-8 xs:text-3xl sm:text-5xl">
-                    Roex
-                  </h2>
-                </div>
-              </div>
-              <div className="flex max-w-full flex-grow flex-col place-content-center gap-4 rounded-xl bg-white/10 p-8 backdrop-blur-md sm:gap-6 md:max-w-[60%]">
-                <div className="flex items-center justify-center gap-6">
-                  <ThornLogo className="max-h-10 max-w-[40px] self-start text-white sm:max-w-[80px]" />
-
-                  <h2 className="font-primary text-2xl font-semibold text-white underline underline-offset-8 xs:text-3xl sm:text-5xl">
-                    Thorn
-                  </h2>
-                </div>
-              </div>
-              <div className="flex max-w-full flex-grow flex-col place-content-center gap-4 rounded-xl bg-white/10 p-8 backdrop-blur-md sm:gap-6 md:max-w-[60%]">
-                <div className="flex items-center justify-center gap-6">
-                  <FullscriptLogo className="max-h-10 max-w-[40px] self-start text-white sm:max-w-[80px]" />
-
-                  <h2 className="font-primary text-2xl font-semibold text-white underline underline-offset-8 xs:text-3xl sm:text-5xl">
-                    Fullscript
-                  </h2>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="absolute top-0 z-0 h-full w-full bg-supplements-pattern bg-[length:120px] bg-repeat opacity-10 mix-blend-overlay">
-            <img className="h-20 w-20" src="./supplements.svg" alt="" />
-          </div>
-          <div className="absolute bottom-0 z-10 h-1/3 w-full translate-y-16 bg-gradient-to-t from-transparent via-primary to-transparent"></div>
-        </section>
-        {/* Equipment */}
-        <section
-          id={sections[6].name}
-          ref={sections[6].ref}
-          className="relative z-0 grid place-items-center bg-gradient-to-b from-primary to-dark py-32"
-        >
-          <div className="grid w-4/5 gap-20 xs:w-10/12 sm:w-[min(70%,_1100px)]">
-            <div className="relative z-10 grid place-items-center gap-2 justify-self-start md:gap-4 lg:gap-6">
-              <h1 className="font-secondary text-[1.95rem] text-primary xs:text-4xl sm:text-6xl lg:text-7xl xl:text-8xl">
-                {capitalizeFirstLetter(sections[6].name)}
-              </h1>
-              <BarLarge
-                gradientId={`${sections[6].name}-bar`}
-                className="h-6 md:h-7 lg:h-9 xl:h-11"
-                color1={colors.primary}
-                color2={colors.primary}
-              />
-            </div>
-          </div>
-        </section>
-        {/* Contact */}
-        <section
-          id={sections[7].name}
-          ref={sections[7].ref}
-          className="relative z-0 grid place-items-center bg-dark py-32"
-        >
-          <div className="grid w-4/5 gap-20 xs:w-10/12 sm:w-[min(70%,_1100px)]">
-            <div className="relative z-10 grid place-items-center gap-2 justify-self-start md:gap-4 lg:gap-6">
-              <h1 className="font-secondary text-[1.95rem] text-primary xs:text-4xl sm:text-6xl lg:text-7xl xl:text-8xl">
-                {capitalizeFirstLetter(sections[7].name)}
-              </h1>
-              <Bar
-                gradientId={`${sections[7].name}-bar`}
-                className="h-6 md:h-7 lg:h-9 xl:h-11"
-                color1={colors.primary}
-                color2={colors.primary}
-              />
-            </div>
-            <div className="-mx-[8%] grid text-2xl text-white xs:-mx-[5%] md:text-4xl">
-              <div className="grid gap-4 overflow-clip rounded-[60px] border-[15px] border-secondary bg-white/30 p-4 drop-shadow-xl transition-colors hover:bg-white/40 xs:rounded-[80px] xs:p-6 md:gap-8 md:border-[30px] md:p-14">
-                <div className="-mt-10 mb-6 w-[40%] place-self-center rounded-b-[30px] border-[30px] border-secondary xs:-mt-14 md:mb-0 md:-translate-y-4"></div>
-                <h4 className="leading-6">
-                  Jan's email:{" "}
-                  <a
-                    className="break-all text-lg underline transition-colors hover:text-secondary xs:break-normal md:text-2xl"
-                    href="mailto:jansgymonline@gmail.com"
-                  >
-                    jansgymonline@gmail.com
-                  </a>
-                </h4>
-                <h4 className="leading-4">
-                  Jan's cell:{" "}
-                  <a
-                    className="text-lg underline transition-colors hover:text-secondary md:text-2xl"
-                    href="tel:6029893166"
-                  >
-                    (602)989-3166
-                  </a>
-                </h4>
-                <div className="h-[10px] w-full rounded-full bg-white/30"></div>
-                <h4>Send Jan a message:</h4>
-                <input
-                  className="w-full rounded-[30px] bg-white/30 p-6 text-white outline-none transition-colors placeholder:text-dark/50 hover:bg-secondary/30 focus:bg-secondary"
-                  type="email"
-                  placeholder="Your email"
+          </section>
+          {/* Profile */}
+          <section
+            id={sections[3].name}
+            ref={sections[3].ref}
+            className="parallax-preserve parallax-layer-0 relative grid place-items-center py-20 sm:py-32"
+          >
+            <div className="parallax-preserve grid w-4/5 gap-20 xs:w-10/12 sm:w-[min(70%,_1100px)]">
+              <div className="relative z-10 grid place-items-center gap-1 justify-self-start xs:gap-2 md:gap-4 lg:gap-6">
+                <h1 className="font-secondary text-[1.95rem] text-primary xs:text-4xl sm:text-6xl lg:text-7xl xl:text-8xl">
+                  {capitalizeFirstLetter(sections[3].name)}
+                </h1>
+                <Bar
+                  className="h-5 md:h-7 lg:h-9 xl:h-11"
+                  color1={colors.primary}
+                  color2={colors.primary}
+                  gradientId="profileGradient"
                 />
-                <textarea
-                  className="h-full w-full rounded-[30px] bg-white/30 p-6 text-white outline-none transition-colors placeholder:text-dark/50 hover:bg-secondary/30 focus:bg-secondary"
-                  placeholder="Your message"
-                  name=""
-                  id=""
-                  cols="10"
-                  rows="10"
-                ></textarea>
-                <button className="grid max-w-full place-items-center rounded-[30px] bg-white/30 p-4 pt-6 transition-colors hover:bg-secondary focus:bg-secondary md:max-w-[200px]">
-                  Send
-                </button>
+              </div>
+              <div className="relative z-10">
+                <div className="rounded-2xl bg-white/40 p-4 text-lg leading-6 backdrop-blur-md sm:p-10 md:text-2xl md:leading-8">
+                  <p>
+                    Please, allow me to take a moment to introduce myself, and
+                    explain a personal service I am excited to offer you.
+                    <br />
+                    <br />
+                    My name is Jan Stevenson. I have been involved and
+                    practicing personal training for over 40 years. I have
+                    worked with a volume of clients through personal individual
+                    training, and group training in many facilities that you may
+                    recognize (Tucson Athletic Club, LaMancha Athletic Club,
+                    LaCamarilla Athletic Club, Moon Valley Country Club, ?????).
+                    I have been an active member of IDEA for over ?? years and
+                    have recently earned the “IDEA Inspiration Award”.
+                    <br />
+                    <br />
+                    It is obvious from the many years I have been training that
+                    I am actively involved not due to financial necessity, but
+                    as a result of passion. We all want better health and
+                    fitness, and we strive our entire lives for that result. I
+                    love to assist others in this quest, and you will find my
+                    enthusiasm to be encouraging.
+                    <br />
+                    <br />I would love to prove it to you! Give me a call at
+                    ##### and we can begin the process today.
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        </section>
+            <div className="parallax-preserve parallax-layer-1 absolute z-0 grid h-[95%] place-self-center overflow-hidden object-cover">
+              <div className="absolute top-0 z-10 col-start-1 row-start-1 h-[50%] w-full self-end bg-gradient-to-t from-transparent to-white"></div>
+              <div className="absolute bottom-0 z-10 col-start-1 row-start-1 h-[50%] w-full self-end bg-gradient-to-b from-transparent to-white"></div>
+              {/* <div className="relative z-10 col-start-1 row-start-1 h-full w-3/4">
+                <div className="absolute top-0 right-0 h-full w-[40%] translate-x-1 bg-gradient-to-r from-transparent to-white"></div>
+              </div> */}
+              <img
+                className="z-0 col-start-1 row-start-1 h-full w-full -scale-x-100 self-end object-cover"
+                src="./profile-pic.jpg"
+                alt=""
+              />
+            </div>
+          </section>
+          {/* Classes */}
+          <section
+            id={sections[4].name}
+            ref={sections[4].ref}
+            className="relative z-10 grid place-items-center pt-32 pb-12 sm:pb-32"
+          >
+            <div className="relative grid w-9/12 gap-[30px] p-1 xs:p-6 sm:w-[min(60%,_1100px)]">
+              <div className="relative z-10 grid w-fit place-items-center gap-1 justify-self-center pb-6 xs:gap-2 sm:pb-10 md:gap-4 lg:gap-6">
+                <h1 className="font-secondary text-[1.95rem] text-white xs:text-4xl sm:text-6xl lg:text-7xl xl:text-8xl">
+                  {capitalizeFirstLetter(sections[4].name)}
+                </h1>
+                <Bar
+                  className="h-5 md:h-7 lg:h-9 xl:h-11"
+                  gradientId={sections[4].name + "Bar"}
+                  color1={colors.white}
+                  color2={colors.white}
+                />
+              </div>
+              <div className="relative grid pt-12 sm:pt-16">
+                <div className="absolute z-10 w-[130%] -translate-y-full justify-self-center border-b-[15px] border-dark xs:w-[calc(100%+100px)] sm:w-[calc(100%+150px)] sm:border-b-[30px]"></div>
+                <div className="relative z-10 flex flex-wrap gap-6">
+                  {dates[0] ? (
+                    <div className="flex flex-grow flex-col place-items-center gap-1 rounded-2xl bg-white p-4 sm:gap-3 sm:p-8">
+                      <h2 className="text-2xl font-bold tracking-wider text-primary sm:text-4xl">
+                        <span className="underline">
+                          {dates[0]?.date.toLocaleDateString(`en-us`, {
+                            weekday: `long`,
+                          })}
+                        </span>
+                        <span className="text-sm text-light sm:text-lg">{` (${dates[0]?.date.toLocaleDateString(
+                          `en-us`,
+                          {
+                            month: `numeric`,
+                            day: `numeric`,
+                          }
+                        )})`}</span>
+                      </h2>
+                      <p className="text-xl sm:text-2xl">{`${dates[0].date.toLocaleTimeString(
+                        "en-US",
+                        { timeStyle: `short` }
+                      )} MT`}</p>
+                      <p className="text-xl sm:text-2xl"> Zoom Link:</p>
+                    </div>
+                  ) : (
+                    <NoClass />
+                  )}
+                  {dates[0] ? (
+                    <div className="flex flex-grow flex-col place-items-center gap-1 rounded-2xl bg-white p-4 sm:gap-3 sm:p-8">
+                      <h2 className="text-2xl font-bold tracking-wider text-primary sm:text-4xl">
+                        <span className="underline">
+                          {dates[1]?.date.toLocaleDateString(`en-us`, {
+                            weekday: `long`,
+                          })}
+                        </span>
+                        <span className="text-sm text-light sm:text-lg">{` (${dates[1]?.date.toLocaleDateString(
+                          `en-us`,
+                          {
+                            month: `numeric`,
+                            day: `numeric`,
+                          }
+                        )})`}</span>
+                      </h2>
+                      <p className="text-xl sm:text-2xl">{`${dates[1].date.toLocaleTimeString(
+                        "en-US",
+                        { timeStyle: `short` }
+                      )} MT`}</p>
+                      <p className="text-xl sm:text-2xl"> Zoom Link:</p>
+                    </div>
+                  ) : (
+                    <NoClass />
+                  )}
+                  <div className="flex flex-grow flex-col justify-center gap-1 sm:gap-3">
+                    <li className="text-xl sm:text-2xl"> $5 per class</li>
+                    <li className="text-xl sm:text-2xl">Pay through Zelle</li>
+                    <li className="break-all text-xl transition-colors duration-300 hover:text-secondary-dark sm:text-2xl">
+                      <a href="mailto:Jansgymonline@gmail.com">
+                        Jansgymonline@gmail.com
+                      </a>
+                    </li>
+                  </div>
+                </div>
+              </div>
+              <div className="absolute -z-0 grid h-[calc(100%+80px)] w-[calc(100%+80px)] grid-cols-5 self-center justify-self-center rounded-[100px] bg-primary shadow-xl sm:h-[calc(100%+150px)] sm:w-[calc(100%+150px)]">
+                <div className="relative rounded-l-[100px] border-y-[15px] border-l-[15px] border-dark bg-transparent sm:border-y-[30px] sm:border-l-[30px]"></div>
+                <div className="relative grid border-b-[15px] border-dark bg-transparent sm:border-b-[30px]">
+                  <div className="absolute w-[30px] -translate-x-1/2 rounded-full border-t-[15px] border-dark sm:border-t-[30px]"></div>
+                  <div className="absolute h-[80px] -translate-y-1/2 justify-self-center rounded-full border-l-[15px] border-dark sm:h-[120px] sm:border-l-[30px]"></div>
+                  <div className="absolute right-0 w-[30px] translate-x-1/2 rounded-full border-t-[15px] border-dark sm:border-t-[30px]"></div>
+                </div>
+                <div className="relative border-y-[15px] border-dark bg-transparent sm:border-y-[30px]"></div>
+                <div className="relative grid border-b-[15px] border-dark bg-transparent sm:border-b-[30px]">
+                  <div className="absolute w-[30px] -translate-x-1/2 rounded-full border-t-[15px] border-dark sm:border-t-[30px]"></div>
+                  <div className="absolute h-[80px] -translate-y-1/2 justify-self-center rounded-full border-l-[15px] border-dark sm:h-[120px] sm:border-l-[30px]"></div>
+                  <div className="absolute right-0 w-[30px] translate-x-1/2 rounded-full border-t-[15px] border-dark sm:border-t-[30px]"></div>
+                </div>
+                <div className="relative rounded-r-[100px] border-y-[15px] border-r-[15px] border-dark bg-transparent sm:border-y-[30px] sm:border-r-[30px]"></div>
+              </div>
+            </div>
+          </section>
+          {/* Supplements */}
+          <section
+            id={sections[5].name}
+            ref={sections[5].ref}
+            className="relative grid place-items-center bg-gradient-to-b from-white to-primary py-32 "
+          >
+            <div className="relative z-20 grid w-4/5 gap-10 xs:w-10/12 sm:w-[min(70%,_1100px)] sm:gap-20">
+              <div className="relative z-10 grid place-items-center gap-1 justify-self-start xs:gap-2 md:gap-4 lg:gap-6">
+                <h1 className="font-secondary text-[1.95rem] text-dark xs:text-4xl sm:text-6xl lg:text-7xl xl:text-8xl">
+                  {capitalizeFirstLetter(sections[5].name)}
+                </h1>
+                <BarLarge
+                  className="h-6 md:h-7 lg:h-9 xl:h-11"
+                  color1={colors.dark}
+                  color2={colors.dark}
+                />
+              </div>
+              <div className="flex flex-wrap justify-center gap-10 sm:gap-20">
+                <div className="flex max-w-full flex-grow flex-col place-content-center gap-4 rounded-xl bg-white/10 p-8 backdrop-blur-md sm:gap-6 md:max-w-[60%]">
+                  <div className="flex items-center justify-center gap-6">
+                    <RoexLogo className="max-h-10 max-w-[40px] self-start text-white sm:max-w-[80px]" />
+
+                    <h2 className="font-primary text-2xl font-semibold text-white underline underline-offset-8 xs:text-3xl sm:text-5xl">
+                      Roex
+                    </h2>
+                  </div>
+                </div>
+                <div className="flex max-w-full flex-grow flex-col place-content-center gap-4 rounded-xl bg-white/10 p-8 backdrop-blur-md sm:gap-6 md:max-w-[60%]">
+                  <div className="flex items-center justify-center gap-6">
+                    <ThornLogo className="max-h-10 max-w-[40px] self-start text-white sm:max-w-[80px]" />
+
+                    <h2 className="font-primary text-2xl font-semibold text-white underline underline-offset-8 xs:text-3xl sm:text-5xl">
+                      Thorn
+                    </h2>
+                  </div>
+                </div>
+                <div className="flex max-w-full flex-grow flex-col place-content-center gap-4 rounded-xl bg-white/10 p-8 backdrop-blur-md sm:gap-6 md:max-w-[60%]">
+                  <div className="flex items-center justify-center gap-6">
+                    <FullscriptLogo className="max-h-10 max-w-[40px] self-start text-white sm:max-w-[80px]" />
+
+                    <h2 className="font-primary text-2xl font-semibold text-white underline underline-offset-8 xs:text-3xl sm:text-5xl">
+                      Fullscript
+                    </h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="absolute top-0 z-0 h-full w-full bg-supplements-pattern bg-[length:120px] bg-repeat opacity-10 mix-blend-overlay">
+              <img className="h-20 w-20" src="./supplements.svg" alt="" />
+            </div>
+            <div className="absolute bottom-0 z-10 h-1/3 w-full translate-y-16 bg-gradient-to-t from-transparent via-primary to-transparent"></div>
+          </section>
+          {/* Equipment */}
+          <section
+            id={sections[6].name}
+            ref={sections[6].ref}
+            className="relative z-0 grid place-items-center bg-gradient-to-b from-primary to-dark py-32"
+          >
+            <div className="grid w-4/5 gap-20 xs:w-10/12 sm:w-[min(70%,_1100px)]">
+              <div className="relative z-10 grid place-items-center gap-2 justify-self-start md:gap-4 lg:gap-6">
+                <h1 className="font-secondary text-[1.95rem] text-primary xs:text-4xl sm:text-6xl lg:text-7xl xl:text-8xl">
+                  {capitalizeFirstLetter(sections[6].name)}
+                </h1>
+                <BarLarge
+                  gradientId={`${sections[6].name}-bar`}
+                  className="h-6 md:h-7 lg:h-9 xl:h-11"
+                  color1={colors.primary}
+                  color2={colors.primary}
+                />
+              </div>
+            </div>
+          </section>
+          {/* Contact */}
+          <section
+            id={sections[7].name}
+            ref={sections[7].ref}
+            className="relative z-0 grid place-items-center bg-dark py-32"
+          >
+            <div className="grid w-4/5 gap-10 xs:w-10/12 sm:w-[min(70%,_1100px)] sm:gap-20">
+              <div className="relative z-10 grid place-items-center gap-2 justify-self-start md:gap-4 lg:gap-6">
+                <h1 className="font-secondary text-[1.95rem] text-primary xs:text-4xl sm:text-6xl lg:text-7xl xl:text-8xl">
+                  {capitalizeFirstLetter(sections[7].name)}
+                </h1>
+                <Bar
+                  gradientId={`${sections[7].name}-bar`}
+                  className="h-6 md:h-7 lg:h-9 xl:h-11"
+                  color1={colors.primary}
+                  color2={colors.primary}
+                />
+              </div>
+              <div className="-mx-[8%] grid text-xl text-white xs:-mx-[5%] md:text-4xl">
+                <div className="grid gap-4 overflow-clip rounded-[60px] border-[15px] border-secondary bg-white/30 p-4 drop-shadow-xl transition-colors hover:bg-white/40 xs:rounded-[80px] xs:p-6 md:gap-8 md:border-[30px] md:p-14">
+                  <div className="-mt-12 mb-2 w-[40%] place-self-center rounded-b-[30px] border-[30px] border-secondary xs:-mt-14 md:mb-0 md:-translate-y-4"></div>
+                  <h4 className="leading-6">
+                    Jan's email:{" "}
+                    <a
+                      className="break-all text-base underline transition-colors hover:text-secondary xs:break-normal md:text-2xl"
+                      href="mailto:jansgymonline@gmail.com"
+                    >
+                      jansgymonline@gmail.com
+                    </a>
+                  </h4>
+                  <h4 className="leading-4">
+                    Jan's cell:{" "}
+                    <a
+                      className="text-base underline transition-colors hover:text-secondary md:text-2xl"
+                      href="tel:6029893166"
+                    >
+                      (602)989-3166
+                    </a>
+                  </h4>
+                  <div className="h-[10px] w-full rounded-full bg-white/30"></div>
+                  <h4>Send Jan a message:</h4>
+                  <input
+                    className="w-full rounded-[30px] bg-white/30 p-6 text-white outline-none transition-colors placeholder:text-dark/50 hover:bg-secondary/30 focus:bg-secondary"
+                    type="email"
+                    placeholder="Your email"
+                  />
+                  <textarea
+                    className="h-full w-full rounded-[30px] bg-white/30 p-6 text-white outline-none transition-colors placeholder:text-dark/50 hover:bg-secondary/30 focus:bg-secondary"
+                    placeholder="Your message"
+                    name=""
+                    id=""
+                    cols="10"
+                    rows="10"
+                  ></textarea>
+                  <button className="grid max-w-full place-items-center rounded-[30px] bg-white/30 p-4 pt-6 transition-colors hover:bg-secondary focus:bg-secondary md:max-w-[200px]">
+                    Send
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
       </div>
     </div>
   );
